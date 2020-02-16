@@ -3,20 +3,13 @@
 <div class="pos-f-t">
   <div class="collapse" id="navbarToggleExternalContent">
     <div class="bg-light p-4">
-
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	  <div class="collapse navbar-collapse" id="navbarText">
-	    <ul class="navbar-nav mr-auto">
-	      <li class="nav-item">
-	        <a class="nav-link" href="javascript:SwitchTab('tb_1', 'finance_data_form');" id="tb_1">Home <span class="sr-only">(current)</span></a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="javascript:SwitchTab('tb_2', 'congressional_activity_form');" id="tb_2">Features</a>
-	      </li>
-	    </ul>
-	  </div>
-	</nav>
-
+    <div class="row">
+    	<div class="col">
+		    <a href="javascript:SwitchTab('tb_1', 'finance_data_form');" id="tb_1" class="tabmenu active">Finance Data</a>&nbsp&nbsp&nbsp
+		    <a href="javascript:SwitchTab('tb_2', 'congressional_activity_form');" id="tb_2" class="tabmenu">Congressional Activity</a>
+    	</div>
+    </div>
+    <hr>
 	<div id="finance_data_form" class="tabcontent"> 
 		<form>
 			<div class="row">
@@ -102,16 +95,4 @@
     </button>
   </nav>
 </div>
-
-<script>
-	function SwitchTab(rudr_tab_id, rudr_tab_content) {
-	// first of all we get all tab content blocks by class names
-	var x = document.getElementsByClassName("tabcontent");
-	var i;
-	for (i = 0; i < x.length; i++) {
-		x[i].style.display = 'none'; // hide all tab content
-	}
-	document.getElementById(rudr_tab_content).style.display = 'block'; // display the content of the tab we need
-}
-</script>
 {% endblock content %}
