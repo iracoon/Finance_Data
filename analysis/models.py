@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+# python manage.py makemigrations
+# python manage.py migrate
 
 class Compensation(models.Model):
 	ID = models.CharField(max_length=15, primary_key=True)
@@ -9,7 +11,7 @@ class Compensation(models.Model):
 	CalendarYear = models.CharField(max_length=2, default=None)
 	ReportType = models.CharField(max_length=1, default=None)
 	CompSource = models.CharField(max_length=100, default=None)
-	Orgname = models.CharField(max_length=40, default=None)
+	Orgname = models.CharField(max_length=50, default=None) #changed from 40->60 to accomadate some long org names
 	Ultorg = models.CharField(max_length=40, default=None)
 	Realcode = models.CharField(max_length=5, default=None)
 	Source = models.CharField(max_length=5, default=None)
@@ -19,7 +21,20 @@ class Compensation(models.Model):
 
 	
 	def __str__(self):
-		return self.title
+		obj_str = 'ID: ' + self.ID + '  ' + \
+		'Chamber: ' + self.Chamber + '  ' + \
+		'CID: ' + self.CID + '  ' + \
+		'CalendarYear: ' + self.CalendarYear + '  ' + \
+		'ReportType: ' + self.ReportType + '  ' + \
+		'CompSource: ' + self.CompSource + '  ' + \
+		'Orgname: ' + self.Orgname + '  ' + \
+		'Ultorg: ' + self.Ultorg + '  ' + \
+		'Realcode: ' + self.Realcode + '  ' + \
+		'Source: ' + self.Source + '  ' + \
+		'CompSourceLocation: ' + self.CompSourceLocation + '  ' + \
+		'CompDuties: ' + self.CompDuties + '  ' + \
+		'dupe: ' + self.dupe + '\n\n  ' 
+		return obj_str
 
 # CREATE TABLE [dbo].[Compensation](
 # [ID] [varchar](15) NOT NULL,
