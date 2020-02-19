@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Compensation
 
 def home(request):
 	return render(request, 'analysis/home.html')
@@ -10,7 +11,17 @@ def about(request):
 
 
 def search(request):
-	return render(request, 'analysis/search.html')
+	qs = Compensation.objects.all()
+
+	industry_param_query = request.GET.get('industry_param')
+	nulls_param_query = request.GET.get('nulls_param')
+	keywords_param_query = request.GET.get('keywords_param')
+
+	context = {
+		'queryset': qs
+	}
+	
+	return render(request, 'analysis/search.html', context)
 
 
 # Create your views here.
