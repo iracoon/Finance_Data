@@ -114,17 +114,26 @@
     </button>
 </nav>
 </div>
-
+<br />
 <div class="container">
+	<div class="row">
+		<div class="col">
+			<h1>Search Results</h1>
+		</div>
+	</div>
+	<br />
     <div class="row">
-	    <ul>
-	      {% for item in queryset %}
-	        <li>
-	          {{ item.ID }}
-	        </li>
-	        <hr />
-	      {% endfor %}
-	    </ul>
+	    {% for item in queryset %}
+	    <div class="col-sm-12 col-md-6 col-1g-6">
+			<div class="card">
+				<div class="card-body">
+				    <h5 class="card-title">{{ item.Orgname }}</h5>
+				    <p class="card-text">{{ item.CompSourceLocation }}</p>
+				</div>
+			</div>
+			<br />
+		</div>   	    
+		{% endfor %}
   	</div>
 </div>
 {% endblock content %}
