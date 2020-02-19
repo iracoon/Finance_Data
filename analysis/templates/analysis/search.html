@@ -1,112 +1,6 @@
 {% extends "analysis/base.html" %}
 {% block content %}
-<div class="pos-f-t">
-  <div class="collapse" id="navbarToggleExternalContent">
-    <div class="bg-light p-4">
-		<form method="GET" action=".">
-			<div class="row">
-		    	<div class="col-3">
-					<div class="form-group">
-					    <label>Chamber</label>
-					    <select class="form-control">
-					      <option>House</option>
-					    </select>
-					</div>
-				</div>
-	    	    <div class="col-3">
-				    <div class="form-group">
-					    <label >Term</label>
-					    <select class="form-control">
-					    	<option>115</option>
-					    </select>
-				    </div>
-			    </div>
-			    <div class="col-6">
-				    <div class="form-group">
-					    <label >Member</label>
-					    <select class="form-control">
-					    	<option>Bernie Sanders</option>
-					    </select>
-				    </div>
-			    </div>
-			</div>
-		</form>
-	    <div class="row">
-	    	<div class="col">
-			    <a href="javascript:SwitchTab('tb_1', 'finance_data_form');" id="tb_1" class="tabmenu active">Finance Data</a>&nbsp;&nbsp;&nbsp;
-			    <a href="javascript:SwitchTab('tb_2', 'congressional_activity_form');" id="tb_2" class="tabmenu">Congressional Activity</a>
-	    	</div>
-	    </div>
-	    <hr>
-		<div id="finance_data_form" class="tabcontent"> 
-			<form method="GET" action=".">
-				<div class="row">
-			    	<div class="col">
-						<div class="form-group">
-						    <label>Category</label>
-						    <select class="form-control">
-						      <option>Personal Finance Data</option>
-						    </select>
-						</div>
-					</div>
-		    	    <div class="col">
-					    <div class="form-group">
-						    <label >Subcategory</label>
-						    <select class="form-control">
-						    	<option>Compensations</option>
-						    </select>
-					    </div>
-				    </div>
-				</div>
-				<div class="row">
-			    	<div class="col">
-						<div class="form-group">
-						    <label>Sector</label>
-						    <select class="form-control">
-						    	<option>All...</option>
-						        <option>Agriculture</option>
-						    </select>
-						</div>
-					</div>
-		    	    <div class="col">
-					    <div class="form-group">
-					    	<label>Industry</label>
-						    <select class="form-control" name="industry_param">
-						    	<option>All...</option>
-						        <option>Corn</option>
-						        <option>Soy</option>
-						    </select>
-					    </div>
-				    </div>
-				</div>
-			  	<div class="row">
-					<div class="col">
-						<div class="form-group">
-							<label>Search by word or phrase</label>
-						    <input type="text" class="form-control" placeholder="None..." name="keywords_param" />
-						</div>
-					</div>
-				</div>
-				<div class="row">
-				  	<div class="col">
-						<button type="submit" class="btn btn-primary">Search</button>
-					</div>
-					<div class="col">
-					  	<div class="form-check">
-							<input class="form-check-input" type="checkbox"  checked="checked" name="nulls_param" />
-						    <label class="form-check-label">
-						    Include nulls
-						    </label>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div> 
-		<div id="congressional_activity_form" class="tabcontent" style="display:none;">
-			<p>(to-do)</p>
-		</div>
-    </div>
-</div>
+{% include 'analysis/search_nav_content.html' %}
 <nav class="navbar navbar-light bg-light">
 	<p>hi</p>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -127,8 +21,9 @@
 	    <div class="col-sm-12 col-md-6 col-1g-6">
 			<div class="card">
 				<div class="card-body">
-				    <h5 class="card-title">{{ item.Orgname }}</h5>
+				    <h5 class="card-title">{{ item.CompSource }}</h5>
 				    <p class="card-text">{{ item.CompSourceLocation }}</p>
+				    <p class="card-text">{{ item.Realcode }}</p>
 				</div>
 			</div>
 			<br />
