@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.db.models import Q
 from .models import Compensation
+from .models import Post
 
 def home(request):
 	return render(request, 'analysis/home.html')
@@ -44,7 +45,8 @@ def search(request):
 		qs = qs.exclude(Realcode__isnull=True).exclude(Realcode__exact='')
 
 	context = {
-		'queryset': qs
+		'queryset': qs,
+		'posts' : Post.objects.all()
 	}
 
 	return render(request, 'analysis/search.html', context)

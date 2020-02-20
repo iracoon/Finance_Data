@@ -2,7 +2,6 @@
 {% block content %}
 {% include 'analysis/search_nav_content.html' %}
 <nav class="navbar navbar-light bg-light">
-	<p>hi</p>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
     <span>Search Parameters</span>
     </button>
@@ -15,13 +14,35 @@
 			<h1>Search Results</h1>
 		</div>
 	</div>
+<!-- 	<br />
+    <div class="row">
+	    {% for item in posts %}
+	    <div class="col-sm-12 col-md-6 col-1g-6">
+			<div class="card bg-light mb-3 border-light">
+			    <div class="card-header">
+			    	Post
+			    </div>
+				<div class="card-body">
+				    <h5 class="card-title">{{ item.name }}</h5>
+				    <p class="card-text">{{ item.author }}</p>
+				    <p class="card-text">{{ item.content }}</p>
+				    <p class="card-text">{{ item.date_posted }}</p>
+				</div>
+			</div>
+			<br />
+		</div>   	    
+		{% endfor %}
+  	</div> -->
 	<br />
     <div class="row">
 	    {% for item in queryset %}
 	    <div class="col-sm-12 col-md-6 col-1g-6">
 			<div class="card bg-light mb-3 border-light">
+				<div class="card-header" style="border:none">
+				    {{ item.CompSource }}
+				</div>
 				<div class="card-body">
-				    <h5 class="card-title">{{ item.CompSource }}</h5>
+				    <h5 class="card-title">{{ item.Orgname }}</h5>
 				    <p class="card-text">{{ item.CompSourceLocation }}</p>
 				    <p class="card-text">{{ item.Realcode }}</p>
 				</div>
