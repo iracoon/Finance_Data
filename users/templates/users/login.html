@@ -10,13 +10,13 @@
 <div class="container">
 	<div class="row">
 		<div class="col">
-			<h1>Sign Up</h1>
+			<h1>Sign In</h1>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col">
 	        <small class="text-muted">
-	            Already have an account?<a class="ml-2" href="{% url 'login' %}">Sign In</a>
+	            Don't have an account?<a class="ml-2" href="{% url 'register' %}">Sign Up</a>
 	        </small>
 		</div>
 	</div>
@@ -31,11 +31,12 @@
 				            {{ form|crispy }}
 				        </fieldset>
 				        <div class="form-group">
-				            <button class="btn btn-primary" type="submit">Sign Up</button>
+				            <button class="btn btn-primary" type="submit">Sign In</button>
 				        </div>
 				    </form>
 				</div>
 			</div>
+
 		</div>
 	</div>
 </div>
