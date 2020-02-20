@@ -6,28 +6,40 @@
     <span>Search Parameters</span>
     </button>
 </nav>
+<br />
 <div class="container">
 	<div class="row">
 		<div class="col">
-		    <form method="POST">
-		        {% csrf_token %}
-		        <fieldset class="form-group">
-		            {{ form|crispy }}
-		        </fieldset>
-		        <div class="form-group">
-		            <button class="btn btn-outline-info" type="submit">Sign Up</button>
-		        </div>
-		    </form>
+			<h1>Register</h1>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col">
-		    <div class="border-top pt-3">
-		        <small class="text-muted">
-		            Already Have An Account? <a class="ml-2" href="#">Sign In</a>
-		        </small>
-		    </div>
+	        <small class="text-muted">
+	            Already Have An Account?<a class="ml-2" href="#">Sign In</a>
+	        </small>
+		</div>
+	</div>
+	<br />
+	<div class="row">
+		<div class="col">
+			<div class="card bg-light mb-3 border-light">
+				<div class="card-body">
+				    <form method="POST">
+				        {% csrf_token %}
+				        <fieldset class="form-group">
+				            {{ form|crispy }}
+				        </fieldset>
+				        <div class="form-group">
+				            <button class="btn btn-primary" type="submit">Sign Up</button>
+				        </div>
+				    </form>
+				</div>
+			</div>
+
 		</div>
 	</div>
 </div>
+<br />
+<br />
 {% endblock content %}
