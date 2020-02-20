@@ -1,17 +1,13 @@
 {% extends "analysis/base.html" %}
 {% block content %}
-<h1>Home Page</h1>
+<nav class="navbar navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span>Search Parameters</span>
+    </button>
+</nav>
 <div class="container">
 	<div class="row">
-		<div class="col">
-		  {% if messages %}
-		    {% for message in messages %}
-		      <div class="alert alert-{{ message.tags }}">
-		        {{ message }}
-		      </div>
-		    {% endfor %}
-		  {% endif %}
-		</div>
+		<h1>Home Page</h1>
 	</div>
 </div>
 {% endblock content %}
