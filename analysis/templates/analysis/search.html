@@ -1,14 +1,12 @@
 {% extends "analysis/base.html" %}
 {% block content %}
-{% include 'analysis/search_nav_content.html' %}
-<nav class="navbar navbar-light bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span>Search Parameters</span>
-    </button>
-</nav>
-</div>
-<br />
 <div class="container">
+	<p>
+	  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+	    Search parameters
+	  </button>
+	</p>
+	{% include 'analysis/search_params.html' %}
 	<div class="row">
 		<div class="col">
 			<h1>Search Results</h1>
