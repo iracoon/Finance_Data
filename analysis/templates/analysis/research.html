@@ -1,0 +1,23 @@
+{% extends "analysis/base.html" %}
+{% block content %}
+<h1>Research Posts</h1>
+<br />
+<div class="row">
+    {% for item in posts %}
+    <div class="col-sm-12 col-md-6 col-1g-6">
+		<div class="card bg-light mb-3 border-light">
+		    <div class="card-header" style="border:none">
+		    	Posted by @{{ item.author }} at {{ item.date_posted }}
+		    </div>
+		    <a href="{% url 'analysis-research-detail' item.id %}">
+			<div class="card-body">
+			    <h5 class="card-title">{{ item.title }}</h5>
+			    <p class="card-text">{{ item.content |truncatechars:7}}</p>
+			</div>
+			</a>
+		</div>
+		<br />
+	</div>   	    
+	{% endfor %}
+</div>
+{% endblock content %}
