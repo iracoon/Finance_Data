@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
 from django.views.generic import (
 	ListView, 
@@ -28,7 +29,7 @@ class ResearchDetailView(DetailView):
 	template_name = 'analysis/research_detail.html'
 
 
-class ResearchCreateView(CreateView):
+class ResearchCreateView(LoginRequiredMixin, CreateView):
 	model = Post
 	template_name = 'analysis/research_form.html'
 	fields = ['title', 'content']
@@ -36,8 +37,6 @@ class ResearchCreateView(CreateView):
 	def form_valid(self, form):
 		form.instance.author = self.request.user
 		return super().form_valid(form)
-    	# form.instance.author = self.request.user
-    	# return super().form_valid(form)
 
 
 class SearchDetailView(DetailView):
