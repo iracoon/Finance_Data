@@ -6,7 +6,8 @@ from django.views.generic import (
 	ListView, 
 	DetailView,
 	CreateView,
-	UpdateView
+	UpdateView,
+	DeleteView
 )
 from .models import Compensation
 from .models import Post
@@ -30,6 +31,18 @@ class ResearchDetailView(DetailView):
 	template_name = 'analysis/research_detail.html'
 
 
+class ResearchDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+	model = Post
+	template_name = 'analysis/research_confirm_delete.html'
+	success_url = '/research/'
+
+	def test_func(self):
+		post = self.get_object()
+		if self.request.user == post.author:
+			return True
+		return False
+
+
 class ResearchCreateView(LoginRequiredMixin, CreateView):
 	model = Post
 	template_name = 'analysis/research_form.html'
@@ -38,6 +51,7 @@ class ResearchCreateView(LoginRequiredMixin, CreateView):
 	def form_valid(self, form):
 		form.instance.author = self.request.user
 		return super().form_valid(form)
+
 
 class ResearchUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Post
