@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, UserPassesTestMixin
 from django.db.models import Q
 from django.views.generic import (
 	ListView, 
 	DetailView,
-	CreateView
+	CreateView,
+	UpdateView
 )
 from .models import Compensation
 from .models import Post
@@ -37,6 +38,21 @@ class ResearchCreateView(LoginRequiredMixin, CreateView):
 	def form_valid(self, form):
 		form.instance.author = self.request.user
 		return super().form_valid(form)
+
+class ResearchUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+	model = Post
+	template_name = 'analysis/research_form.html'
+	fields = ['title', 'content']
+
+	def form_valid(self, form):
+		form.instance.author = self.request.user
+		return super().form_valid(form)
+
+	def test_func(self):
+		post = self.get_object()
+		if self.request.user == post.author:
+			return True
+		return False
 
 
 class SearchDetailView(DetailView):
