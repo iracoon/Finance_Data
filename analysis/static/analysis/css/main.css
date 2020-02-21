@@ -1,5 +1,8 @@
 /* #9acd32 -> green*/
 /* #f8f9fa -> grey */
+#logo {
+	color: #9acd32;
+}
 
 a {
     text-decoration: none !important;
