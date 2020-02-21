@@ -1,53 +1,51 @@
 {% extends "analysis/base.html" %}
 {% block content %}
-<div class="container">
-	<p>
-	  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-	    Search parameters
-	  </button>
-	</p>
-	{% include 'analysis/search_params.html' %}
-	<div class="row">
-		<div class="col">
-			<h1>Search Results</h1>
-		</div>
+<p>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Search parameters
+  </button>
+</p>
+{% include 'analysis/search_params.html' %}
+<div class="row">
+	<div class="col">
+		<h1>Search Results</h1>
 	</div>
-<!-- 	<br />
-    <div class="row">
-	    {% for item in posts %}
-	    <div class="col-sm-12 col-md-6 col-1g-6">
-			<div class="card bg-light mb-3 border-light">
-			    <div class="card-header">
-			    	Post
-			    </div>
-				<div class="card-body">
-				    <h5 class="card-title">{{ item.name }}</h5>
-				    <p class="card-text">{{ item.author }}</p>
-				    <p class="card-text">{{ item.content }}</p>
-				    <p class="card-text">{{ item.date_posted }}</p>
-				</div>
-			</div>
-			<br />
-		</div>   	    
-		{% endfor %}
-  	</div> -->
-	<br />
-    <div class="row">
-	    {% for item in queryset %}
-	    <div class="col-sm-12 col-md-6 col-1g-6">
-			<div class="card bg-light mb-3 border-light">
-				<div class="card-header" style="border:none">
-				    {{ item.CompSource }}
-				</div>
-				<div class="card-body">
-				    <h5 class="card-title">{{ item.Orgname }}</h5>
-				    <p class="card-text">{{ item.CompSourceLocation }}</p>
-				    <p class="card-text">{{ item.Realcode }}</p>
-				</div>
-			</div>
-			<br />
-		</div>   	    
-		{% endfor %}
-  	</div>
 </div>
+<!-- 	<br />
+<div class="row">
+    {% for item in posts %}
+    <div class="col-sm-12 col-md-6 col-1g-6">
+		<div class="card bg-light mb-3 border-light">
+		    <div class="card-header">
+		    	Post
+		    </div>
+			<div class="card-body">
+			    <h5 class="card-title">{{ item.name }}</h5>
+			    <p class="card-text">{{ item.author }}</p>
+			    <p class="card-text">{{ item.content }}</p>
+			    <p class="card-text">{{ item.date_posted }}</p>
+			</div>
+		</div>
+		<br />
+	</div>   	    
+	{% endfor %}
+	</div> -->
+<br />
+<div class="row">
+    {% for item in queryset %}
+    <div class="col-sm-12 col-md-6 col-1g-6">
+		<div class="card bg-light mb-3 border-light">
+			<div class="card-header" style="border:none">
+			    {{ item.CompSource }}
+			</div>
+			<div class="card-body">
+			    <h5 class="card-title">{{ item.Orgname }}</h5>
+			    <p class="card-text">{{ item.CompSourceLocation }}</p>
+			    <p class="card-text">{{ item.Realcode }}</p>
+			</div>
+		</div>
+		<br />
+	</div>   	    
+	{% endfor %}
+	</div>
 {% endblock content %}

@@ -1,34 +1,32 @@
 {% extends "analysis/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="container">
-	<div class="row">
-		<div class="col">
-			<h1>Sign Up</h1>
-		</div>
+<div class="row">
+	<div class="col">
+		<h1>Sign Up</h1>
 	</div>
+</div>
 <!-- 	<div class="row">
-		<div class="col">
-	        <small class="text-muted">
-	            Already have an account?<a class="ml-2" href="{% url 'login' %}">Sign In</a>
-	        </small>
-		</div>
-	</div> -->
-	<br />
-	<div class="row">
-		<div class="col">
-			<div class="card bg-light mb-3 border-light">
-				<div class="card-body">
-				    <form method="POST">
-				        {% csrf_token %}
-				        <fieldset class="form-group">
-				            {{ form|crispy }}
-				        </fieldset>
-				        <div class="form-group">
-				            <button class="btn btn-primary" type="submit">Sign Up</button>
-				        </div>
-				    </form>
-				</div>
+	<div class="col">
+        <small class="text-muted">
+            Already have an account?<a class="ml-2" href="{% url 'login' %}">Sign In</a>
+        </small>
+	</div>
+</div> -->
+<br />
+<div class="row">
+	<div class="col">
+		<div class="card bg-light mb-3 border-light">
+			<div class="card-body">
+			    <form method="POST">
+			        {% csrf_token %}
+			        <fieldset class="form-group">
+			            {{ form|crispy }}
+			        </fieldset>
+			        <div class="form-group">
+			            <button class="btn btn-primary" type="submit">Sign Up</button>
+			        </div>
+			    </form>
 			</div>
 		</div>
 	</div>
