@@ -18,6 +18,17 @@ def home(request):
 def about(request):
 	return render(request, 'analysis/about.html')
 
+def find(request):
+	return render(request, 'analysis/find.html')
+
+
+def stats(request):
+	return render(request, 'analysis/stats.html')
+
+
+def graphs(request):
+	return render(request, 'analysis/graphs.html')
+
 
 class ResearchListView(ListView):
 	model = Post
