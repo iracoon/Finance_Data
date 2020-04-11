@@ -82,17 +82,17 @@ class ResearchUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class SearchDetailView(DetailView):
 	model = Compensation
-	template_name = 'analysis/search_detail.html'
+	template_name = 'analysis/search/search_detail.html'
 
+#Search Page
 
 class SearchListView(ListView):
 	model = Compensation
 	context_object_name = 'compensations'
-	template_name = 'analysis/search.html'
+	template_name = 'analysis/search/search.html'
 
 	def get_queryset(self):
 		qs = Compensation.objects.all()
-
 		industry_param_query = self.request.GET.get('industry_param')
 		nulls_param_query = self.request.GET.get('nulls_param')
 		keywords_param_query = self.request.GET.get('keywords_param')
@@ -120,6 +120,5 @@ class SearchListView(ListView):
 		# include nulls in industry column
 		if nulls_param_query == 'on':
 			qs = qs.exclude(Realcode__isnull=True).exclude(Realcode__exact='')
-
 		return qs;
 
