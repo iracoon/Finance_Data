@@ -17,8 +17,8 @@
 
     <!-- Sidebar -->
     {% if True %}
-    <div class="bg-dark" id="sidebar-wrapper">
-       <div class="sidebar-heading" style="color:white"><b><i class="fa fa-cogs" aria-hidden="true"></i> search.</b>parameters</div>
+    <div class="bg-dark position-fixed" id="sidebar-wrapper">
+       <div class="sidebar-heading" style="color:white"><b><i class="fa fa-cogs" aria-hidden="true"></i> search.</b>parameters</i></div>
        <div class="list-group list-group-flush">
        {% include 'analysis/search/search_params.html' %}
        </div>
@@ -31,7 +31,7 @@
           {% if True %}
           <button class="btn btn-light" id="menu-toggle"><span class="navbar-toggler-icon"></span></button>
           {% endif %}
-          <a class="navbar-brand" href="{% url 'analysis-home' %}"><b>TrackGov</b> <i id="logo" class="fa fa-pagelines" aria-hidden="true"></i></i></a>
+          <a class="navbar-brand" href="{% url 'analysis-home' %}"><b>TrackGov</b> <i id="logo" class="fa fa-pagelines" aria-hidden="true"></i></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border: 0px">
             <i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
           </button>
