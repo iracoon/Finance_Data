@@ -1,0 +1,29 @@
+{% extends "analysis/base.html" %}
+{% block content %}
+<div class="jumbotron" style="border-radius: 0px">
+  <h1 class="display-4"><i class="fa fa-search" aria-hidden="true"></i> Search Tool</h1>
+  <p class="lead">Use this tool to find insights into a congress person's financial data as well as their congressional activity. This data is sourced for the ProPulica API and the OpenSecrets API.</p>
+  <hr>
+  <p>Want to learn more about this congress person? Visit their profile page!</p>
+  <p class="lead">
+    <a class="btn btn-dark btn-lg" href="#" role="button">Profile</a>
+  </p>
+</div>
+
+<div class="search">
+
+<div class="row">
+    {% for item in honorarias %}
+    <div class="col-sm-12 col-md-6 col-1g-6">
+		<div class="card bg-light mb-3 border-light">
+			<div class="card-header" style="border:none">
+			    {{ item.ID }}
+			</div>
+		</div>
+		<br />
+	</div>   	    
+	{% endfor %}
+</div>
+
+</div>
+{% endblock content %}

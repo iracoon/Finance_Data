@@ -1,5 +1,5 @@
 <div class="search-form">
-	<form method="GET" action=".">
+	<form method="GET" action="{% url 'analysis-search-honoraria' %}">
 	    <div class="form-group">
 		    <label><h6 class="font-weight-light" id="grey"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;&nbsp;Congress Person</h6></label>
 		    <select class="form-control">
@@ -16,8 +16,8 @@
 			</div>
 		</div>
 		<hr style="display: block; height: 1px;
-    border: 0; border-top: 1px solid #f8f9fa;
-    margin: 1em 0; padding: 0; ">
+    	border: 0; border-top: 1px solid #f8f9fa;
+    	margin: 1em 0; padding: 0; ">
 
 		<div id="finance_data_form" class="tabcontent"> 
 			<div class="form-group">
@@ -31,9 +31,7 @@
 		    <div class="form-group">
 		    	<label><h6 id="grey" class="font-weight-light"><i class="fa fa-chevron-circle-right" id="grey" aria-hidden="true"></i>&nbsp;&nbsp;Industry</h6></label>
 			    <select class="form-control" name="industry_param">
-			    	<option selected value="">All...</option>
-			        <option value="Y0000">unknown</option>
-			        <option value="C2400">defense</option>
+					{% include 'analysis/options/finance_industry_options.html' %}
 			    </select>
 		    </div>
 		</div>
@@ -56,7 +54,7 @@
 		    </div>
 		</div>
 		<div class="row justify-content-center">
-			<button type="submit" class="btn btn-outline-light">search</button>
+			<button type="submit" class="btn btn-outline-light">Search</button>
 		</div>
 	</form>
 </div>

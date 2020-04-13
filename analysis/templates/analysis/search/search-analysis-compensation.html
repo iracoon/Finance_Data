@@ -50,5 +50,24 @@
 	</div>   	    
 	{% endfor %}
 </div>
+<div class="row justify-content-center">
+	{% if compensations.has_previous %}
+	<a href="?page=1">&nbsp;<i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;</a>
+	<a href="?page={{compensations.previous_page_number}}">&nbsp;<i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;</a>
+	{% endif %}
+
+	{% for num in compensations.paginator.page_range %}
+		{% if compensations.number == num %}
+			<strong>&nbsp;&nbsp;{{num}}&nbsp;&nbsp;</strong>
+		{% elif num > compensations.number|add:'-3' and num < compensations.number|add:'3' %}
+			&nbsp;{{num}}&nbsp;
+		{% endif %}
+	{% endfor %}
+
+	{% if compensations.has_next %}
+		<a href="?page={{compensations.next_page_number}}">&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;</a>
+		<a href="?page={{compensations.paginator.num_pages}}">&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;</a>
+	{% endif %}
+</div>
 </div>
 {% endblock content %}

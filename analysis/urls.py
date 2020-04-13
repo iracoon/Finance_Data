@@ -6,7 +6,8 @@ from .views import (
 	ResearchUpdateView,
 	ResearchDeleteView,
 	SearchDetailView, 
-	SearchListView)
+	SearchCompensationListView,
+	SearchHonorariaListView)
 from . import views
 
 urlpatterns = [
@@ -17,7 +18,8 @@ urlpatterns = [
 	path('research/new/', ResearchCreateView.as_view(), name='research-create'),
 	path('research/<int:pk>/update/', ResearchUpdateView.as_view(), name='analysis-research-update'),
 	path('research/<int:pk>/delete/', ResearchDeleteView.as_view(), name='analysis-research-delete'),
-	path('search/',  SearchListView.as_view(), name='analysis-search'),
+	path('search/compensation/',  SearchCompensationListView.as_view(), name='analysis-search-compensation'),
+	path('search/honoraria/',  SearchHonorariaListView.as_view(), name='analysis-search-honoraria'),
 	path('search/<pk>/', SearchDetailView.as_view(), name='analysis-search-detail'),
 	path('find/', views.find, name='analysis-find'),
 	path('stats/', views.stats, name='analysis-stats'),

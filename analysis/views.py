@@ -10,6 +10,7 @@ from django.views.generic import (
 	DeleteView
 )
 from .models import Compensation
+from .models import Honoraria
 from .models import Post
 from django.core.paginator import Paginator
 
@@ -87,16 +88,17 @@ class SearchDetailView(DetailView):
 
 #Search Page
 
-class SearchListView(ListView):
+class SearchCompensationListView(ListView):
 	model = Compensation
 	context_object_name = 'compensations'
-	template_name = 'analysis/search/search.html'
+	template_name = 'analysis/search/search-analysis-compensation.html'
 
 	def get_queryset(self):
-		qs = Compensation.objects.all()
 		industry_param_query = self.request.GET.get('industry_param')
 		nulls_param_query = self.request.GET.get('nulls_param')
 		keywords_param_query = self.request.GET.get('keywords_param')
+
+		qs = Compensation.objects.all()
 
 		# keywords search for all columns in table
 		if keywords_param_query != '' and keywords_param_query is not None:
@@ -129,3 +131,16 @@ class SearchListView(ListView):
 
 		return qs;
 
+class SearchHonorariaListView(ListView):
+	model = Honoraria
+	context_object_name = 'honorarias'
+	template_name = 'analysis/search/search-analysis-honoraria.html'
+
+	def get_queryset(self):
+		industry_param_query = self.request.GET.get('industry_param')
+		nulls_param_query = self.request.GET.get('nulls_param')
+		keywords_param_query = self.request.GET.get('keywords_param')
+
+		qs = Honoraria.objects.all()
+
+		return qs;
