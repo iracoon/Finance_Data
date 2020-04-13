@@ -1,18 +1,35 @@
 {% extends "analysis/base.html" %}
 {% block content %}
-<div class="jumbotron" style="border-radius: 0px; background: rgb(20,132,76);
-background: linear-gradient(90deg, rgba(20,132,76,1) 22%, rgba(75,179,124,1) 100%); color: white">
-  <h1 class="display-4">Search Tool</h1>
+<div class="jumbotron" style="border-radius: 0px">
+  <h1 class="display-4"><i class="fa fa-search" aria-hidden="true"></i> Search Tool</h1>
   <p class="lead">Use this tool to find insights into a congress person's financial data as well as their congressional activity. This data is sourced for the ProPulica API and the OpenSecrets API.</p>
-  <hr style="display: block; height: 1px;
-    border: 0; border-top: 1px solid white;
-    margin: 1em 0; padding: 0">
+  <hr>
   <p>Want to learn more about this congress person? Visit their profile page!</p>
   <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Profile</a>
+    <a class="btn btn-dark btn-lg" href="#" role="button">Profile</a>
   </p>
 </div>
 
+<div class="search">
+<div class="row">
+	{% if compensations.has_previous %}
+	<a href="?page=1"><<</a>
+	<a href="?page={{compensations.previous_page_number}}"><</a>
+	{% endif %}
+
+	{% for num in compensations.paginator.page_range %}
+		{% if compensations.number == num %}
+			<strong>{{num}}</strong>
+		{% elif num > compensations.number|add:'-3' and num < compensations.number|add:'3' %}
+			{{num}}
+		{% endif %}
+	{% endfor %}
+
+	{% if compensations.has_next %}
+		<a href="?page={{compensations.next_page_number}}">></a>
+		<a href="?page={{compensations.next_page_number}}">>></a>
+	{% endif %}
+</div>	
 <div class="row">
     {% for item in compensations %}
     <div class="col-sm-12 col-md-6 col-1g-6">
@@ -31,5 +48,6 @@ background: linear-gradient(90deg, rgba(20,132,76,1) 22%, rgba(75,179,124,1) 100
 		<br />
 	</div>   	    
 	{% endfor %}
+</div>
 </div>
 {% endblock content %}

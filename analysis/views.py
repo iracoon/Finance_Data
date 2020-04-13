@@ -11,6 +11,7 @@ from django.views.generic import (
 )
 from .models import Compensation
 from .models import Post
+from django.core.paginator import Paginator
 
 def home(request):
 	return render(request, 'analysis/home.html')
@@ -120,5 +121,11 @@ class SearchListView(ListView):
 		# include nulls in industry column
 		if nulls_param_query == 'on':
 			qs = qs.exclude(Realcode__isnull=True).exclude(Realcode__exact='')
+		
+		paginator = Paginator(qs, 3)
+
+		page = self.request.GET.get('page')
+		qs = paginator.get_page(page)
+
 		return qs;
 
