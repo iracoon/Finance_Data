@@ -122,7 +122,7 @@ class SearchListView(ListView):
 		if nulls_param_query == 'on':
 			qs = qs.exclude(Realcode__isnull=True).exclude(Realcode__exact='')
 		
-		paginator = Paginator(qs, 3)
+		paginator = Paginator(qs, 20)
 
 		page = self.request.GET.get('page')
 		qs = paginator.get_page(page)
