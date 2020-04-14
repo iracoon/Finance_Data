@@ -24,7 +24,7 @@ a {
 }
 
 .tabmenu.active {
-  color: #fff;
+  color: #000;
   font-size: 16px;
 }
 
@@ -33,14 +33,17 @@ a {
 }
 
 /* sidebar */
-
 body {
   overflow-x: hidden;
 }
 
 #sidebar-wrapper {
   min-height: 100vh;
-  margin-left: 0rem;
+  margin-left: -17rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
 }
 
 #sidebar-wrapper .sidebar-heading {
@@ -54,15 +57,10 @@ body {
 
 #page-content-wrapper {
   min-width: 100vw;
-  margin-left: 17rem;
-}
-
-#wrapper.toggled #page-content-wrapper {
-  margin-left: 0;
 }
 
 #wrapper.toggled #sidebar-wrapper {
-  margin-left: -17rem;
+  margin-left: 0;
 }
 
 @media (min-width: 768px) {
@@ -73,11 +71,6 @@ body {
   #page-content-wrapper {
     min-width: 0;
     width: 100%;
-    margin-left: 17rem;
-  }
-
-  #wrapper.toggled #page-content-wrapper {
-    margin-left: 0rem;
   }
 
   #wrapper.toggled #sidebar-wrapper {

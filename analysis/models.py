@@ -628,3 +628,126 @@ class Honoraria(models.Model):
 # [HonorariaAmtText] [varchar](25) NULL,
 # [Dupe] [char](1) NULL
 # ) ON [PRIMARY]
+
+##############################################
+
+class Indivs(models.Model):
+	Cycle = models.CharField(max_length=7)
+	FECTransID = models.CharField(max_length=28)
+	ContribID = models.CharField(max_length=20, default=None)
+	Contrib = models.CharField(max_length=70, default=None)
+	RecipID= models.CharField(max_length= 20, default=None)
+	Orgname= models.CharField(max_length=70, default=None)
+	UltOrg= models.CharField(max_length=70, default=None)
+	RealCode= models.CharField(max_length=10, default=None)
+	Date= models.CharField(max_length=20, default=None)
+	Amount= models.CharField(max_length=20, default=None)
+	City= models.CharField(max_length=50, default=None)
+	State= models.CharField(max_length=5, default=None)
+	Zip= models.CharField(max_length=10, default=None)
+	Recipcode= models.CharField(max_length=5, default=None)
+	Type= models.CharField(max_length=6, default=None)
+	CmteID= models.CharField(max_length=15, default=None)
+	OtherID= models.CharField(max_length=16, default=None)
+	Gender= models.CharField(max_length=3, default=None)
+	Microfilm= models.CharField(max_length=20, default=None)
+	Occupation= models.CharField(max_length=50, default=None)
+	Employer= models.CharField(max_length=50, default=None)
+	Source= models.CharField(max_length=10, default=None)
+
+
+	def __str__(self):
+		obj_str = 'CYCLE: ' + self.Cycle + ' FECTRANSID: ' + self.FECTransID
+		return obj_str
+
+# CREATE TABLE [dbo].[Indivs14](
+# [Cycle] [char](4) NOT NULL,
+# [FECTransID] [char](19) NOT NULL,
+# [ContribID] [char](12) NULL,
+# [Contrib] [varchar](50) NULL,
+# [RecipID] [char](9) NULL,
+# [Orgname] [varchar](50) NULL,
+# [UltOrg] [varchar](50) NULL,
+# [RealCode] [char](5) NULL,
+# [Date] [datetime] NULL,
+# [Amount] [int] NULL,
+# [City] [varchar] (30) NULL,
+# [State] [char] (2) NULL,
+# [Zip] [char] (5) NULL,
+# [Recipcode] [char] (2) NULL,
+# [Type] [char](3) NULL,
+# [CmteID] [char](9) NULL,
+# [OtherID] [char](9) NULL,
+# [Gender] [char](1) NULL,
+# [Microfilm] [varchar](11) NULL,
+# [Occupation] [varchar](38) NULL,
+# [Employer] [varchar](38) NULL,
+# [Source] [char](5) NULL
+# ) ON [PRIMARY]
+
+#########################################################
+
+class PACs(models.Model):
+	Cycle = models.CharField(max_length=7)
+	FECRecNo = models.CharField(max_length=25)
+	PACID = models.CharField(max_length=15)
+	CID = models.CharField(max_length=15, default=None)
+	Amount = models.CharField(max_length=30, default=0)
+	Date = models.CharField(max_length=30, default=None)
+	RealCode = models.CharField(max_length=10, default=None)
+	Type = models.CharField(max_length=6, default=None)
+	DI = models.CharField(max_length=5, default=None)
+	FECCandID = models.CharField(max_length=15, default=None)
+
+
+	def __str__(self):
+		obj_str = 'CYCLE: ' + self.Cycle + ' FECRECNO: ' + self.FECRecNo + ' PACID: ' + self.PACID
+		return obj_str
+
+# CREATE TABLE PACs14 (
+# [Cycle] [char](4) NOT NULL,
+# [FECRecNo] [char](19) NOT NULL,
+# [PACID] [char](9) NOT NULL,
+# [CID] [char](9) NULL,
+# [Amount] [int] DEFAULT (0),
+# [Date] [smalldatetime] NULL,
+# [RealCode] [char](5) NULL,
+# [Type] [char](3) NULL,
+# [DI] [char](1) NOT NULL,
+# [FECCandID] [char](9) NULL
+# ) ON [PRIMARY]
+
+######################################
+
+class CandsCRP(models.Model):
+	Cycle = models.CharField(max_length=7)
+	FECCandID = models.CharField(max_length=15)
+	CID = models.CharField(max_length=15, default=None)
+	FirstLastP = models.CharField(max_length=60, default=None)
+	Party = models.CharField(max_length=5, default=None)
+	DistIDRunFor = models.CharField(max_length=10, default=None)
+	DistIDCurr = models.CharField(max_length=10, default=None)
+	CurrCand = models.CharField(max_length=5, default=None)
+	CycleCand = models.CharField(max_length=3, default=None)
+	CRPICO = models.CharField(max_length=3, default=None)
+	RecipCode = models.CharField(max_length=5, default=None)
+	NoPacs = models.CharField(max_length=5, default=None)
+
+	def __str__(self):
+		obj_str = 'CYCLE: ' + self.Cycle + ' FECCANDID: ' + self.FECCandID
+
+
+# CREATE TABLE CandsCRP14(
+# [Cycle] [char](4) NOT NULL,
+# [FECCandID] [char](9) NOT NULL,
+# [CID] [char](9) NULL,
+# [FirstLastP] [varchar](50) NULL,
+# [Party] [char](1) NULL,
+# [DistIDRunFor] [char](4) NULL,
+# [DistIDCurr] [char](4) NULL,
+# [CurrCand] [char](1) NULL,
+# [CycleCand] [char](1) NULL,
+# [CRPICO] [char](1) NULL,
+# [RecipCode] [char](2) NULL,
+# [NoPacs] [char](1) NULL
+# ) ON [PRIMARY]

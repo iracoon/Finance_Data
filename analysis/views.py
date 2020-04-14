@@ -81,12 +81,11 @@ class ResearchUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 			return True
 		return False
 
+#Search Page
 
 class SearchDetailView(DetailView):
 	model = Compensation
 	template_name = 'analysis/search/search_detail.html'
-
-#Search Page
 
 class SearchCompensationListView(ListView):
 	model = Compensation

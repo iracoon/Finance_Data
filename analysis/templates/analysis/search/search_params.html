@@ -1,7 +1,7 @@
-<div class="search-form">
+<div class="search-form" style="background-color: white">
 	<form method="GET" action="{% url 'analysis-search-honoraria' %}">
 	    <div class="form-group">
-		    <label><h6 class="font-weight-light" id="grey"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;&nbsp;Congress Person</h6></label>
+		    <label><h6 class="font-weight-light" ><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;&nbsp;Congress Person</h6></label>
 		    <select class="form-control">
 		    	<option>Bernie Sanders</option>
 		    </select>
@@ -15,13 +15,11 @@
 		    	<a href="javascript:SwitchTab('tb_2', 'congressional_activity_form');" id="tb_2" class="tabmenu"><i class="fa fa-university" aria-hidden="true"></i> Congress</a>
 			</div>
 		</div>
-		<hr style="display: block; height: 1px;
-    	border: 0; border-top: 1px solid #f8f9fa;
-    	margin: 1em 0; padding: 0; ">
+		<hr >
 
 		<div id="finance_data_form" class="tabcontent"> 
 			<div class="form-group">
-			    <label><h6 id="grey" class="font-weight-light"><i class="fa fa-chevron-circle-right" id="grey" aria-hidden="true"></i>&nbsp;&nbsp;Category</h6></label>
+			    <label><h6 class="font-weight-light"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i>&nbsp;&nbsp;Category</h6></label>
 			    <select class="form-control">
 			    	<option>Bills</option>
 			    	<option>Resolutions</option>
@@ -29,7 +27,7 @@
 			</div>
 
 		    <div class="form-group">
-		    	<label><h6 id="grey" class="font-weight-light"><i class="fa fa-chevron-circle-right" id="grey" aria-hidden="true"></i>&nbsp;&nbsp;Industry</h6></label>
+		    	<label><h6 class="font-weight-light"><i class="fa fa-chevron-circle-right"  aria-hidden="true"></i>&nbsp;&nbsp;Industry</h6></label>
 			    <select class="form-control" name="industry_param">
 					{% include 'analysis/options/finance_industry_options.html' %}
 			    </select>
@@ -37,7 +35,7 @@
 		</div>
 		<div id="congressional_activity_form" class="tabcontent" style="display:none;">
 			<div class="form-group">
-			    <label><h6 id="grey" class="font-weight-light"><i class="fa fa-chevron-circle-right" id="grey" aria-hidden="true"></i>&nbsp;&nbsp;Category</h6></label>
+			    <label><h6 class="font-weight-light"><i class="fa fa-chevron-circle-right"  aria-hidden="true"></i>&nbsp;&nbsp;Category</h6></label>
 			    <select class="form-control">
 			    	<option>Bills</option>
 			    	<option>Resolutions</option>
@@ -45,7 +43,7 @@
 			</div>
 
 		    <div class="form-group">
-		    	<label><h6 id="grey" class="font-weight-light"><i class="fa fa-chevron-circle-right" id="grey" aria-hidden="true"></i>&nbsp;&nbsp;Industry</h6></label>
+		    	<label><h6 class="font-weight-light"><i class="fa fa-chevron-circle-right"  aria-hidden="true"></i>&nbsp;&nbsp;Industry</h6></label>
 			    <select class="form-control" name="industry_param">
 			    	<option selected value="">All...</option>
 			        <option value="Y0000">unknown</option>
@@ -54,7 +52,8 @@
 		    </div>
 		</div>
 		<div class="row justify-content-center">
-			<button type="submit" class="btn btn-outline-light">Search</button>
+			<button type="submit" class="btn btn-outline-light" style="background-color: #139d50">Search</button>
 		</div>
 	</form>
 </div>
+

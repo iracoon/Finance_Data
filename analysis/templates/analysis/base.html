@@ -17,8 +17,8 @@
 
     <!-- Sidebar -->
     {% if True %}
-    <div class="bg-dark position-fixed" id="sidebar-wrapper">
-       <div class="sidebar-heading" style="color:white"><b><i class="fa fa-cogs" aria-hidden="true"></i> search.</b>parameters</div>
+    <div class="border-right" id="sidebar-wrapper">
+       <div class="sidebar-heading"><b><i class="fa fa-cogs" aria-hidden="true"></i> search.</b>parameters</div>
        <div class="list-group list-group-flush">
        {% include 'analysis/search/search_params.html' %}
        </div>
@@ -27,6 +27,7 @@
     <!-- /#sidebar-wrapper -->
 
     <div id="page-content-wrapper">
+      <div style="background-color: black">HI</div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
           {% if True %}
           <button class="btn btn-light" id="menu-toggle"><span class="navbar-toggler-icon"></span></button>
