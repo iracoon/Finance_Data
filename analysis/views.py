@@ -125,7 +125,7 @@ class SearchCompensationListView(ListView):
 		if nulls_param_query == 'on':
 			qs = qs.exclude(Realcode__isnull=True).exclude(Realcode__exact='')
 		
-		paginator = Paginator(qs, 20)
+		paginator = Paginator(qs, 10)
 
 		page = self.request.GET.get('page')
 		qs = paginator.get_page(page)

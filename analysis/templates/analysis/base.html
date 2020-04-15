@@ -18,10 +18,15 @@
     <!-- Sidebar -->
     {% if True %}
     <div class="border-right" id="sidebar-wrapper">
-       <div class="sidebar-heading"><b><i class="fa fa-cogs" aria-hidden="true"></i> search.</b>parameters</div>
-       <div class="list-group list-group-flush">
-       {% include 'analysis/search/search_params.html' %}
-       </div>
+      <div class="sidebar-heading"><b><i class="fa fa-cogs" aria-hidden="true"></i>
+      {% if request.path == "/find/" %}find{% else %}search{% endif %}.</b>parameters</div>
+      <div class="list-group list-group-flush">
+      {% if request.path == "/find/" %}
+        {% include 'analysis/find/find_params.html' %}
+      {% else %}
+        {% include 'analysis/search/search_params.html' %}
+      {% endif %}
+      </div>
     </div>
     {% endif %}
     <!-- /#sidebar-wrapper -->
