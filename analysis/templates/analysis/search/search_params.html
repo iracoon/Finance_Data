@@ -2,8 +2,8 @@
 	<form method="GET" action=".">
 	    <div class="form-group">
 		    <label><h6 class="font-weight-light" ><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;&nbsp;Congress Person</h6></label>
-		    <select class="form-control">
-		    	<option>Bernie Sanders</option>
+		    <select class="form-control" name="person">
+		    	{% include 'analysis/options/congresspeople.html' %}
 		    </select>
 	    </div>
 
@@ -29,7 +29,6 @@
 		    <div class="form-group">
 		    	<label><h6 class="font-weight-light"><i class="fa fa-chevron-circle-right"  aria-hidden="true"></i>&nbsp;&nbsp;Industry</h6></label>
 			    <select class="form-control" name="industry_param">
-					{% include 'analysis/options/finance_industry_options.html' %}
 			    </select>
 		    </div>
 

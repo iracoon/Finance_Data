@@ -33,8 +33,6 @@ def stats(request):
 	cursor = connection.cursor()
 	cursor.execute('SELECT * FROM analysis_honoraria')
 	persons = cursor.fetchall() # fetchall() may not be the right call here?
-	jsonData = []
-	
 	return render(request, 'analysis/stats.html', {'persons':persons})
 
 
