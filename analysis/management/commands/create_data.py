@@ -11,6 +11,9 @@ from analysis.models import Position
 from analysis.models import Transaction
 from analysis.models import Travel
 from analysis.models import Honoraria
+from analysis.models import CandsCRP
+from analysis.models import Indivs
+from analysis.models import PACs
 
 # python manage.py makemigrations (1)
 # python manage.py migrate (2)
@@ -27,7 +30,9 @@ from analysis.models import Honoraria
 #python manage.py create_data data/PFDtravel.txt analysis_travel
 #python manage.py create_data data/PFDhonoraria.txt analysis_honoraria
 
-
+#python manage.py create_data data/cands.txt analysis_candsCRP 
+#python manage.py create_data data/indivs14.txt analysis_indivs 
+#python manage.py create_data data/pacs.txt analysis_pacs 
 
 class Command(BaseCommand):
 
@@ -41,11 +46,11 @@ class Command(BaseCommand):
         file_name = kwargs['file_name']
         model_name = kwargs['model_name']
 
-        if(model_name == "analysis_compensation"): #delete all records in table
-            Compensation.objects.all().delete()
+        # if(model_name == "analysis_compensation"): #delete all records in table
+        #     Compensation.objects.all().delete()
 
-        if(model_name == "analysis_agreement"): #delete all records in table
-            Agreement.objects.all().delete()
+        # if(model_name == "analysis_agreement"): #delete all records in table
+        #     Agreement.objects.all().delete()
 
         num_rows = 0
             
@@ -583,6 +588,149 @@ class Command(BaseCommand):
                                 HonorariaAmt = tmp_arr[14],
                                 HonorariaAmtText = tmp_arr[15],
                                 Dupe = tmp_arr[16])
+                        comp_record.save();
+                        num_rows += 1;
+
+                if(model_name == "analysis_candsCRP"):
+                    prev_ind = 0
+                    all_rows = []
+                    for row in file:
+                        if row[0] != "|":
+                            all_rows[prev_ind - 1] = all_rows[prev_ind - 1][:-1] + row
+                        else:
+                            all_rows.append(row)
+                            prev_ind += 1
+
+                    for row in all_rows:
+                        tmp_arr = []
+                        isStringWord = False
+                        word = ""
+                        for char in row:
+                            if char == row[-1]:
+                                tmp_arr.append(word)
+                            if char == "," and isStringWord == False:
+                                tmp_arr.append(word)
+                                word = ""
+                            elif char == "," and isStringWord == True:
+                                word += char
+                            elif char == "|" and isStringWord == False:
+                                isStringWord = True
+                            elif char == "|" and isStringWord == True:
+                                isStringWord = False
+                            else:
+                                word += char
+                        print(tmp_arr)
+                        comp_record = CandsCRP(
+                                Cycle = tmp_arr[0],
+                                FECCandID = tmp_arr[1],
+                                CID = tmp_arr[2],
+                                FirstLastP = tmp_arr[3],
+                                Party = tmp_arr[4],
+                                DistIDRunFor = tmp_arr[5],
+                                DistIDCurr = tmp_arr[6],
+                                CurrCand = tmp_arr[7],
+                                CycleCand = tmp_arr[8],
+                                CRPICO = tmp_arr[9],
+                                RecipCode = tmp_arr[10],
+                                NoPacs = tmp_arr[11])
+                        comp_record.save();
+                        num_rows += 1;
+
+                if(model_name == "analysis_indivs"):
+                    prev_ind = 0
+                    all_rows = []
+                    for row in file:
+                        if row[0] != "|":
+                            all_rows[prev_ind - 1] = all_rows[prev_ind - 1][:-1] + row
+                        else:
+                            all_rows.append(row)
+                            prev_ind += 1
+
+                    for row in all_rows:
+                        tmp_arr = []
+                        isStringWord = False
+                        word = ""
+                        for char in row:
+                            if char == row[-1]:
+                                tmp_arr.append(word)
+                            if char == "," and isStringWord == False:
+                                tmp_arr.append(word)
+                                word = ""
+                            elif char == "," and isStringWord == True:
+                                word += char
+                            elif char == "|" and isStringWord == False:
+                                isStringWord = True
+                            elif char == "|" and isStringWord == True:
+                                isStringWord = False
+                            else:
+                                word += char
+                        # print(tmp_arr)
+                        comp_record = Indivs(
+                                Cycle = tmp_arr[0],
+                                FECTransID = tmp_arr[1],
+                                ContribID = tmp_arr[2],
+                                Contrib = tmp_arr[3],
+                                RecipID= tmp_arr[4],
+                                Orgname= tmp_arr[5],
+                                UltOrg= tmp_arr[6],
+                                RealCode= tmp_arr[7],
+                                Date= tmp_arr[8],
+                                Amount= tmp_arr[9],
+                                City= tmp_arr[11],
+                                State= tmp_arr[12],
+                                Zip=  tmp_arr[13],
+                                Recipcode= tmp_arr[14],
+                                Type= tmp_arr[15],
+                                CmteID=  tmp_arr[16],
+                                OtherID=  tmp_arr[17],
+                                Gender=  tmp_arr[18],
+                                Microfilm=  tmp_arr[19],
+                                Occupation=  tmp_arr[20],
+                                Employer=  tmp_arr[21],
+                                Source= tmp_arr[22])
+                        comp_record.save();
+                        num_rows += 1;
+
+                if(model_name == "analysis_pacs"):
+                    prev_ind = 0
+                    all_rows = []
+                    for row in file:
+                        if row[0] != "|":
+                            all_rows[prev_ind - 1] = all_rows[prev_ind - 1][:-1] + row
+                        else:
+                            all_rows.append(row)
+                            prev_ind += 1
+
+                    for row in all_rows:
+                        tmp_arr = []
+                        isStringWord = False
+                        word = ""
+                        for char in row:
+                            if char == row[-1]:
+                                tmp_arr.append(word)
+                            if char == "," and isStringWord == False:
+                                tmp_arr.append(word)
+                                word = ""
+                            elif char == "," and isStringWord == True:
+                                word += char
+                            elif char == "|" and isStringWord == False:
+                                isStringWord = True
+                            elif char == "|" and isStringWord == True:
+                                isStringWord = False
+                            else:
+                                word += char
+                        # print(tmp_arr)
+                        comp_record = PACs(
+                                Cycle = tmp_arr[0],
+                                FECRecNo = tmp_arr[1],
+                                PACID = tmp_arr[2],
+                                CID = tmp_arr[3],
+                                Amount = tmp_arr[4],
+                                Date = tmp_arr[5],
+                                RealCode = tmp_arr[6],
+                                Type = tmp_arr[7],
+                                DI = tmp_arr[8],
+                                FECCandID = tmp_arr[9])
                         comp_record.save();
                         num_rows += 1;
 

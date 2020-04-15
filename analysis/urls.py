@@ -7,7 +7,8 @@ from .views import (
 	ResearchDeleteView,
 	SearchDetailView, 
 	SearchCompensationListView,
-	SearchHonorariaListView)
+	SearchHonorariaListView,
+	FindListView)
 from . import views
 
 urlpatterns = [
@@ -21,7 +22,7 @@ urlpatterns = [
 	path('search/compensation/',  SearchCompensationListView.as_view(), name='analysis-search-compensation'),
 	path('search/honoraria/',  SearchHonorariaListView.as_view(), name='analysis-search-honoraria'),
 	path('search/<pk>/', SearchDetailView.as_view(), name='analysis-search-detail'),
-	path('find/', views.find, name='analysis-find'),
+	path('find/', FindListView.as_view(), name='analysis-find'),
 	path('stats/', views.stats, name='analysis-stats'),
 	path('graphs/', views.graphs, name='analysis-graphs'),
 ]

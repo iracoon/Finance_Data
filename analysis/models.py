@@ -751,3 +751,69 @@ class CandsCRP(models.Model):
 # [RecipCode] [char](2) NULL,
 # [NoPacs] [char](1) NULL
 # ) ON [PRIMARY]
+
+######################################################################
+
+class MemberInfo(models.Model):
+	bioguide_id = models.CharField(max_length=15)
+	crp_id = models.CharField(max_length=15)
+	first_name = models.CharField(max_length=30, default=None)
+	last_name = models.CharField(max_length=30, default=None)
+	date_of_birth = models.CharField(max_length=20, default=None)
+	gender = models.CharField(max_length=5, default=None)
+	party = models.CharField(max_length=5, default=None)
+	state = models.CharField(max_length=5, default=None)
+	seniority = models.CharField(max_length=5, default=None)
+	leadership_role = models.CharField(max_length=60, default=None)
+	url = models.CharField(max_length=60, default=None)
+	total_votes = models.CharField(max_length=10, default=None)
+	missed_votes = models.CharField(max_length=10, default=None)
+	missed_votes_pct = models.CharField(max_length=10, default=None)
+	total_present = models.CharField(max_length=10, default=None)
+	votes_with_party_pct = models.CharField(max_length=8, default=None)
+	votes_against_party_pct = models.CharField(max_length=8, default=None)
+
+	def __str__(self):
+		obj_str = 'BIOGUIDE_ID: ' + self.bioguide_id + ' CRP_ID: ' + self.crp_id
+
+# bioguide_id,
+# crp_id,
+# first_name,
+# last_name,
+# date_of_birth,
+# gender,
+# party,
+# state,
+# seniority,
+# leadership_role,
+# url,
+# total_votes,
+# missed_votes,
+# missed_votes_pct,
+# total_present,
+# votes_with_party_pct,
+# votes_against_party_pct
+
+###############################################################################
+
+class Bills(models.Model):
+	bill_id = models.CharField(max_length=15, primary_key=True)
+	bill_type = models.CharField(max_length=10, default=None)
+	number = models.CharField(max_length=10, default=None)
+	term = models.CharField(max_length=6, default=None)
+	origin = models.CharField(max_length=10, default=None)
+	date_introduced = models.CharField(max_length=20, default=None)
+	sponsor_id = models.CharField(max_length=10, default=None)
+	policy_area = models.CharField(max_length=40, default=None)
+
+	def __str__(self):
+		obj_str = 'BILL_ID: ' + self.bill_id
+
+# bill_id,
+# type,
+# number,
+# term,
+# origin,
+# date_introduced,
+# sponsor_id,
+# policy_area

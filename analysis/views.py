@@ -20,8 +20,10 @@ def home(request):
 def about(request):
 	return render(request, 'analysis/about.html')
 
-def find(request):
-	return render(request, 'analysis/find.html')
+class FindListView(ListView):
+	model = Compensation
+	context_object_name = 'compensations'
+	template_name = 'analysis/find/find.html'
 
 
 def stats(request):
