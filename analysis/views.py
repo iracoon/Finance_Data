@@ -1,6 +1,9 @@
 from django.shortcuts import render
+from bson.json_util import dumps
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, UserPassesTestMixin
+from django.db import connection
+from django.template import RequestContext
 from django.db.models import Q
 from django.views.generic import (
 	ListView, 
@@ -25,9 +28,14 @@ class FindListView(ListView):
 	context_object_name = 'compensations'
 	template_name = 'analysis/find/find.html'
 
-
+#general info page
 def stats(request):
-	return render(request, 'analysis/stats.html')
+	cursor = connection.cursor()
+	cursor.execute('SELECT * FROM analysis_honoraria')
+	persons = cursor.fetchall() # fetchall() may not be the right call here?
+	jsonData = []
+	
+	return render(request, 'analysis/stats.html', {'persons':persons})
 
 
 def graphs(request):
@@ -96,6 +104,7 @@ class SearchCompensationListView(ListView):
 
 	def get_queryset(self):
 		industry_param_query = self.request.GET.get('industry_param')
+		print(industry_param_query)
 		nulls_param_query = self.request.GET.get('nulls_param')
 		keywords_param_query = self.request.GET.get('keywords_param')
 

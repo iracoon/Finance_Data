@@ -1,6 +1,12 @@
 {% extends "analysis/base.html" %}
 {% block content %}
-    <h1>Find Page</h1>
-    <p>Find policitians with the highest donations, net worth, etc. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    {% include 'analysis/find/find_params.html' %}
+<div class="jumbotron" style="border-radius: 0px">
+  <h1 class="display-4"><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i> Find Tool</h1>
+  <br />
+  <p class="lead"><i class="fa fa-circle" aria-hidden="true"></i>&nbsp;&nbsp;Which congresspeople have recieved the most pac donations per term?</p>
+  <p class="lead"><i class="fa fa-circle" aria-hidden="true"></i>&nbsp;&nbsp;Which congresspeople have recieved the most individual donations per term?</p>
+  <p class="lead"><i class="fa fa-circle" aria-hidden="true"></i>&nbsp;&nbsp;Which congresspeople have participated the most in congress?</p>
+   <hr>
+  <p>click on a card to visit a congressperson's profile</p>
+</div>
 {% endblock content %}

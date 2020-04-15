@@ -1,5 +1,5 @@
 <div class="search-form" style="background-color: white">
-	<form method="GET" action="{% url 'analysis-search-honoraria' %}">
+	<form method="GET" action=".">
 	    <div class="form-group">
 		    <label><h6 class="font-weight-light" ><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;&nbsp;Congress Person</h6></label>
 		    <select class="form-control">
@@ -32,6 +32,11 @@
 					{% include 'analysis/options/finance_industry_options.html' %}
 			    </select>
 		    </div>
+
+		   	<div class="form-group">
+				<label><h6 class="font-weight-light" ><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;&nbsp;Keyword</h6></label>
+				<input type="text" class="form-control" placeholder="None..." name="keywords_param" />
+			</div>
 		</div>
 		<div id="congressional_activity_form" class="tabcontent" style="display:none;">
 			<div class="form-group">
@@ -44,12 +49,17 @@
 
 		    <div class="form-group">
 		    	<label><h6 class="font-weight-light"><i class="fa fa-chevron-circle-right"  aria-hidden="true"></i>&nbsp;&nbsp;Industry</h6></label>
-			    <select class="form-control" name="industry_param">
+			    <select class="form-control">
 			    	<option selected value="">All...</option>
 			        <option value="Y0000">unknown</option>
 			        <option value="C2400">defense</option>
 			    </select>
 		    </div>
+
+		    <div class="form-group">
+				<label><h6 class="font-weight-light" ><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;&nbsp;Keyword</h6></label>
+				<input type="text" class="form-control" placeholder="None..." name="keywords_param" />
+			</div>
 		</div>
 		<div class="row justify-content-center">
 			<button type="submit" class="btn btn-outline-light" style="background-color: #139d50">Search</button>
