@@ -1,6 +1,76 @@
 {% extends "analysis/base.html" %}
 {% block content %}
+{% load static %}
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1>Title</h1>
+    <p class="lead">The Congressional Finance Database would like to acknowledge and thank   <a href="https://www.opensecrets.org" style="color: #3AC817 "> The Center for Responsive Politics (also known by their URL, OpenSecrets.org)</a>, <a href="https://www.propublica.org" style="color: #3AC817">ProPublica.org</a>, and <a href="https://www.congress.gov" style="
+	color: #3AC817 "> Congress.gov </a> for providing their data, and thus making it possible for us to build this project.  </p>
+  </div>
+</div>
 <div class="row">
-	<h1>Home Page</h1>
+	<link rel="stylesheet" type="text/css" href="{% static 'analysis/css/main.css' %}">
+
+	<div class = "row">
+
+
+	<div class= "col-6 py-3 d-flex align-items-stretch">
+ 	<div class="card">
+	  	<img class="card-img-top" src="{% static "images/bank-note.jpg" %}">
+	  	<div class="card-body">
+    	<h5 class="card-title">Congressional Activity</h5>
+    	<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    	<a href="{% url 'analysis-search' %}" class="btn btn-primary">Go >></a>
+ 		</div>
+ 	</div>
+ 	</div>
+
+ 	<div class= "col-6 py-3 d-flex align-items-stretch">
+	<div class="card"">
+	 	<img class="card-img-top" src="{% static "images/capitol-dawn.jpg" %}" >
+	  	<div class="card-body">
+      	<h5 class="card-title">Find</h5>
+    	<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    	<a href="{% url 'analysis-find' %}" class="btn btn-primary">Go somewhere</a>
+ 		</div>
+ 	</div>
+ 	</div>
+
+ 	<div class= "col-6 py-3 d-flex align-items-stretch">
+ 	<div class="card ">
+	  	<img class="card-img-top" src="{% static "images/flag.jpg" %}" >
+	  	<div class="card-body">
+    	<h5 class="card-title">Statistics</h5>
+    	<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    	<a href="{% url 'analysis-stats' %}" class="btn btn-primary">Go somewhere</a>
+ 		</div>
+ 	</div>
+ 	</div>
+
+ 	<div class= "col-6 py-3 d-flex align-items-stretch">
+ 	<div class="card">
+		<img class="card-img-top" src="{% static "images/abraham-lincoln.jpg" %}" >
+	 	<div class="card-body">
+    	<h5 class="card-title">Graphs</h5>
+    	<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    	<a href="{% url 'analysis-graphs' %}" class="btn btn-primary">Go somewhere</a>
+ 	 	</div>
+	</div>
+ 	</div>
+
+	<div class= "col-6 py-3 d-flex align-items-stretch">
+ 	<div class="card">
+		<img class="card-img-top" src="{% static "images/america-ancient.jpg" %}" >
+	 	<div class="card-body">
+    	<h5 class="card-title">Register</h5>
+    	<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    	<a href="{% url 'register' %}" class="btn btn-primary">Go somewhere</a>
+ 	 	</div>
+	</div>
+ 	</div>
+
+ 	</div>
+
 </div>
 {% endblock content %}

@@ -1,0 +1,39 @@
+{% extends "analysis/base.html" %}
+{% block content %}
+    <h1>Statistics Page</h1>
+     <p>Get general info about a congress person like their chamber, top sector donations, etc. sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    {% include 'analysis/stats_params.html' %}
+    <br />
+    <div class="card bg-light mb-3 border-light">
+    		<div class="card-header" style="border:none">
+			    <h1>Ted Cruz</h1>
+			    <p><b>114</b></p>
+			</div>
+		<div class="card-body">
+    	<div class="row">
+    		<div class="col-sm-12 col-md-6 col-1g-6">
+    			<h3 class="font-weight-light">Financial Data</h3>
+				<p><b>name:	</b> name of member, formatted as lastname, firstname</p> 
+				<p><b>member_id: </b> CRP's ID</p> 
+				<p><b>net_low: </b> calculated low range value of politician's net worth</p> 
+				<p><b>net_high: </b> calculated high range value of politician's net worth</p> 
+				<p><b>positions_held_count: </b> number of position records returned</p> 
+				<p><b>asset_count: </b> number of asset records returned</p> 
+				<p><b>asset_low: </b> calculated low range value of assets</p> 
+				<p><b>asset_high: </b> calculated high range value of assets</p> 
+				<p><b>transaction_count: </b>number of transaction records returned</p> 
+				<p><b>tx_low: </b>lowest value of transaction range</p> 
+				<p><b>tx_high: </b> highest value of transaction range</p> 
+				<p><b>source: </b> link to this data on OpenSecrets.org</p> 
+				<p><b>origin: </b> attribution to display</p> 
+    		</div>
+    		<div class="col-sm-12 col-md-6 col-1g-6">
+    			<h3 class="font-weight-light">Congressional Activity</h3>
+    			<p><b>committees:	</b> Senate Comittee</p> 
+				<p><b>subcommittees: </b> Defence Subcommittee, agricultural Subcommittee</p> 
+				<p><b>number of votes: </b> 200</p> 
+    		</div>
+    	</div>
+    	</div>
+	</div>
+{% endblock content %}

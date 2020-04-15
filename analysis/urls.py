@@ -18,5 +18,8 @@ urlpatterns = [
 	path('research/<int:pk>/update/', ResearchUpdateView.as_view(), name='analysis-research-update'),
 	path('research/<int:pk>/delete/', ResearchDeleteView.as_view(), name='analysis-research-delete'),
 	path('search/',  SearchListView.as_view(), name='analysis-search'),
-	path('search/<pk>/', SearchDetailView.as_view(), name='analysis-search-detail')
+	path('search/<pk>/', SearchDetailView.as_view(), name='analysis-search-detail'),
+	path('find/', views.find, name='analysis-find'),
+	path('stats/', views.stats, name='analysis-stats'),
+	path('graphs/', views.graphs, name='analysis-graphs'),
 ]

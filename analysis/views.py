@@ -11,12 +11,29 @@ from django.views.generic import (
 )
 from .models import Compensation
 from .models import Post
+import csv
 
 def home(request):
 	return render(request, 'analysis/home.html')
 
 def about(request):
-	return render(request, 'analysis/about.html')
+	with open('PolicyArea_Sector.csv') as csvfile:
+		next(csvfile)
+		file = csv.reader(csvfile)		
+		args = {}
+		args['list'] = file
+		return render(request, 'analysis/about.html', args)
+
+def find(request):
+	return render(request, 'analysis/find.html')
+
+
+def stats(request):
+	return render(request, 'analysis/stats.html')
+
+
+def graphs(request):
+	return render(request, 'analysis/graphs.html')
 
 
 class ResearchListView(ListView):
@@ -112,3 +129,5 @@ class SearchListView(ListView):
 
 		return qs;
 
+
+	
