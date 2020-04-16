@@ -719,6 +719,8 @@ class PACs(models.Model):
 
 ######################################
 
+#NOT NEEDED
+
 class CandsCRP(models.Model):
 	Cycle = models.CharField(max_length=7)
 	FECCandID = models.CharField(max_length=15)
@@ -765,7 +767,7 @@ class MemberInfo(models.Model):
 	state = models.CharField(max_length=5, default=None)
 	seniority = models.CharField(max_length=5, default=None)
 	leadership_role = models.CharField(max_length=60, default=None)
-	url = models.CharField(max_length=60, default=None)
+	url = models.CharField(max_length=200, default=None)
 	total_votes = models.CharField(max_length=10, default=None)
 	missed_votes = models.CharField(max_length=10, default=None)
 	missed_votes_pct = models.CharField(max_length=10, default=None)
@@ -804,7 +806,7 @@ class Bills(models.Model):
 	origin = models.CharField(max_length=10, default=None)
 	date_introduced = models.CharField(max_length=20, default=None)
 	sponsor_id = models.CharField(max_length=10, default=None)
-	policy_area = models.CharField(max_length=40, default=None)
+	policy_area = models.CharField(max_length=200, default=None)
 
 	def __str__(self):
 		obj_str = 'BILL_ID: ' + self.bill_id
@@ -817,3 +819,43 @@ class Bills(models.Model):
 # date_introduced,
 # sponsor_id,
 # policy_area
+
+###########################################################
+
+class Votes(models.Model):
+	bill_id = models.CharField(max_length=15)
+	chamber = models.CharField(max_length=15, default=None)
+	term = models.CharField(max_length=6, default=None)
+	session = models.CharField(max_length=6, default=None)
+	action = models.CharField(max_length=100, default=None)
+	roll_number = models.CharField(max_length=20, default=None)
+	url = models.CharField(max_length=200, default=None)
+
+	def __str__(self):
+		obj_str = 'BILL_ID: ' + self.bill_id
+
+# bill_id,
+# chamber,
+# term,
+# session,
+# action,
+# roll_number,
+# url
+
+###################################
+
+class Cosponsor(models.Model):
+	bill_id = models.CharField(max_length=15)
+	cosponsor = models.CharField(max_length=15, default=None)
+	is_original_cosponsor = models.CharField(max_length=8, default=None)
+	start_date = models.CharField(max_length=20, default=None)
+	withdrawn_date = models.CharField(max_length=20, default=None)
+
+	def __str__(self):
+		obj_str = 'BILL_ID: ' + self.bill_id
+
+# bill_id,
+# cosponsor,
+# is_original_cosponsor,
+# start_date,
+# withdrawn_date

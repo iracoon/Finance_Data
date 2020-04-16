@@ -14,6 +14,10 @@ from analysis.models import Honoraria
 from analysis.models import CandsCRP
 from analysis.models import Indivs
 from analysis.models import PACs
+from analysis.models import MemberInfo
+from analysis.models import Bills
+from analysis.models import Votes
+from analysis.models import Cosponsor
 
 # python manage.py makemigrations (1)
 # python manage.py migrate (2)
@@ -33,6 +37,11 @@ from analysis.models import PACs
 #python manage.py create_data data/cands.txt analysis_candsCRP 
 #python manage.py create_data data/indivs14.txt analysis_indivs 
 #python manage.py create_data data/pacs.txt analysis_pacs 
+
+#python manage.py create_data data/MemberInfo.txt analysis_memberInfo
+#python manage.py create_data data/Bills.txt analysis_bills
+#python manage.py create_data data/votes.txt analysis_votes
+#python manage.py create_data data/cosponsors.txt analysis_cosponser 
 
 class Command(BaseCommand):
 
@@ -731,6 +740,178 @@ class Command(BaseCommand):
                                 Type = tmp_arr[7],
                                 DI = tmp_arr[8],
                                 FECCandID = tmp_arr[9])
+                        comp_record.save();
+                        num_rows += 1;
+
+                if(model_name == "analysis_memberInfo"):
+                    # prev_ind = 0
+                    # all_rows = []
+                    # for row in file:
+                    #     if row[0] != "|":
+                    #         all_rows[prev_ind - 1] = all_rows[prev_ind - 1][:-1] + row
+                    #     else:
+                    #         all_rows.append(row)
+                    #         prev_ind += 1
+
+                    for row in file:
+                        tmp_arr = []
+                        isStringWord = False
+                        word = ""
+                        for char in row:
+                            if char == row[-1]:
+                                tmp_arr.append(word)
+                            if char == "," and isStringWord == False:
+                                tmp_arr.append(word)
+                                word = ""
+                            elif char == "," and isStringWord == True:
+                                word += char
+                            elif char == "|" and isStringWord == False:
+                                isStringWord = True
+                            elif char == "|" and isStringWord == True:
+                                isStringWord = False
+                            else:
+                                word += char
+                        print(tmp_arr)
+                        comp_record = MemberInfo(
+                                bioguide_id = tmp_arr[0],
+                                crp_id = tmp_arr[1],
+                                first_name = tmp_arr[2],
+                                last_name = tmp_arr[3],
+                                date_of_birth = tmp_arr[4],
+                                gender = tmp_arr[5],
+                                party = tmp_arr[6],
+                                state = tmp_arr[7],
+                                seniority = tmp_arr[8],
+                                leadership_role = tmp_arr[9],
+                                url = tmp_arr[10],
+                                total_votes = tmp_arr[11],
+                                missed_votes = tmp_arr[12],
+                                missed_votes_pct = tmp_arr[13],
+                                total_present = tmp_arr[14],
+                                votes_with_party_pct = tmp_arr[15],
+                                votes_against_party_pct = tmp_arr[16])
+                        comp_record.save();
+                        num_rows += 1;
+
+                if(model_name == "analysis_bills"):
+                    # prev_ind = 0
+                    # all_rows = []
+                    # for row in file:
+                    #     if row[0] != "|":
+                    #         all_rows[prev_ind - 1] = all_rows[prev_ind - 1][:-1] + row
+                    #     else:
+                    #         all_rows.append(row)
+                    #         prev_ind += 1
+
+                    for row in file:
+                        tmp_arr = []
+                        isStringWord = False
+                        word = ""
+                        for char in row:
+                            if char == row[-1]:
+                                tmp_arr.append(word)
+                            if char == "," and isStringWord == False:
+                                tmp_arr.append(word)
+                                word = ""
+                            elif char == "," and isStringWord == True:
+                                word += char
+                            elif char == "|" and isStringWord == False:
+                                isStringWord = True
+                            elif char == "|" and isStringWord == True:
+                                isStringWord = False
+                            else:
+                                word += char
+                        print(tmp_arr)
+                        comp_record = Bills(
+                                bill_id = tmp_arr[0],
+                                bill_type = tmp_arr[1],
+                                number = tmp_arr[2],
+                                term = tmp_arr[3],
+                                origin = tmp_arr[4],
+                                date_introduced = tmp_arr[5],
+                                sponsor_id = tmp_arr[6],
+                                policy_area = tmp_arr[7])
+                        comp_record.save();
+                        num_rows += 1;
+
+
+                if(model_name == "analysis_cosponser"):
+                    prev_ind = 0
+                    # all_rows = []
+                    # for row in file:
+                    #     if row[0] != "|":
+                    #         all_rows[prev_ind - 1] = all_rows[prev_ind - 1][:-1] + row
+                    #     else:
+                    #         all_rows.append(row)
+                    #         prev_ind += 1
+
+                    for row in file:
+                        tmp_arr = []
+                        isStringWord = False
+                        word = ""
+                        for char in row:
+                            if char == row[-1]:
+                                tmp_arr.append(word)
+                            if char == "," and isStringWord == False:
+                                tmp_arr.append(word)
+                                word = ""
+                            elif char == "," and isStringWord == True:
+                                word += char
+                            elif char == "|" and isStringWord == False:
+                                isStringWord = True
+                            elif char == "|" and isStringWord == True:
+                                isStringWord = False
+                            else:
+                                word += char
+                        print(tmp_arr)
+                        comp_record = Cosponsor(
+                                bill_id = tmp_arr[0],
+                                cosponsor = tmp_arr[1],
+                                is_original_cosponsor = tmp_arr[2],
+                                start_date = tmp_arr[3],
+                                withdrawn_date = tmp_arr[4])
+                        comp_record.save();
+                        num_rows += 1;
+
+
+
+                if(model_name == "analysis_votes"):
+                    # prev_ind = 0
+                    # all_rows = []
+                    # for row in file:
+                    #     if row[0] != "|":
+                    #         all_rows[prev_ind - 1] = all_rows[prev_ind - 1][:-1] + row
+                    #     else:
+                    #         all_rows.append(row)
+                    #         prev_ind += 1
+
+                    for row in file:
+                        tmp_arr = []
+                        isStringWord = False
+                        word = ""
+                        for char in row:
+                            if char == row[-1]:
+                                tmp_arr.append(word)
+                            if char == "," and isStringWord == False:
+                                tmp_arr.append(word)
+                                word = ""
+                            elif char == "," and isStringWord == True:
+                                word += char
+                            elif char == "|" and isStringWord == False:
+                                isStringWord = True
+                            elif char == "|" and isStringWord == True:
+                                isStringWord = False
+                            else:
+                                word += char
+                        print(tmp_arr)
+                        comp_record = Votes(
+                                bill_id = tmp_arr[0],
+                                chamber = tmp_arr[1],
+                                term = tmp_arr[2],
+                                session = tmp_arr[3],
+                                action = tmp_arr[4],
+                                roll_number = tmp_arr[5],
+                                url = tmp_arr[6])
                         comp_record.save();
                         num_rows += 1;
 
