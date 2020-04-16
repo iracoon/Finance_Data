@@ -30,9 +30,9 @@ class FindListView(ListView):
 
 #general info page
 def stats(request):
-	cursor = connection.cursor()
-	cursor.execute('SELECT * FROM analysis_honoraria')
-	persons = cursor.fetchall() # fetchall() may not be the right call here?
+	# cursor = connection.cursor()
+	# cursor.execute('SELECT * FROM analysis_honoraria')
+	persons = Honoraria.objects.raw('SELECT * FROM analysis_honoraria') # fetchall() may not be the right call here?
 	return render(request, 'analysis/stats.html', {'persons':persons})
 
 
@@ -91,7 +91,7 @@ class ResearchUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 #Search Page
 
-class SearchDetailView(DetailView):
+class SearchCompensationDetailView(DetailView):
 	model = Compensation
 	template_name = 'analysis/search/search_detail.html'
 
@@ -102,7 +102,6 @@ class SearchCompensationListView(ListView):
 
 	def get_queryset(self):
 		industry_param_query = self.request.GET.get('industry_param')
-		print(industry_param_query)
 		nulls_param_query = self.request.GET.get('nulls_param')
 		keywords_param_query = self.request.GET.get('keywords_param')
 

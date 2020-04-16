@@ -1,12 +1,4 @@
 <div class="search-form" style="background-color: white">
-	<form method="GET" action=".">
-	    <div class="form-group">
-		    <label><h6 class="font-weight-light" ><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;&nbsp;Congress Person</h6></label>
-		    <select class="form-control" name="person">
-		    	{% include 'analysis/options/congresspeople.html' %}
-		    </select>
-	    </div>
-
 	    <div class="row">
 		    <div class="col">
 		    	<a href="javascript:SwitchTab('tb_1', 'finance_data_form');" id="tb_1" class="tabmenu active"><i class="fa fa-money" aria-hidden="true"></i>  Finance</a>
@@ -18,10 +10,17 @@
 		<hr >
 
 		<div id="finance_data_form" class="tabcontent"> 
+			<form method="GET" action="" id="search_form" name="search_form">
+			<div class="form-group">
+			    <label><h6 class="font-weight-light" ><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;&nbsp;Congress Person</h6></label>
+			    <select class="form-control" name="person">
+			    	{% include 'analysis/options/congresspeople.html' %}
+			    </select>
+	    	</div>
 			<div class="form-group">
 			    <label><h6 class="font-weight-light"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i>&nbsp;&nbsp;Category</h6></label>
-			    <select class="form-control">
-			    	<option>Compensations - Personal Finance</option>
+			    <select class="form-control" name="table" id="table">
+			    	<option value="Compensations - Personal Finance">Compensations - Personal Finance</option>
 			    	<option>Assets - Personal Finance</option>
 			    	<option>Agreements - Personal Finance</option>
 			    	<option>Gifts - Personal Finance</option>
@@ -30,28 +29,47 @@
 			    	<option>Positions - Personal Finance</option>
 			    	<option>Travel - Personal Finance</option>
 			    	<option>Transcations - Personal Finance</option>
-			    	<option>Honoraria - Personal Finance</option>
+			    	<option value="Honoraria - Personal Finance">Honoraria - Personal Finance</option>
 			    	<option>Individual Donations - Campaign Finance</option>
 			    	<option>PAC Donations - Campaign Finance</option>
 			    </select>
 			</div>
-
 		    <div class="form-group">
 		    	<label><h6 class="font-weight-light"><i class="fa fa-chevron-circle-right"  aria-hidden="true"></i>&nbsp;&nbsp;Industry</h6></label>
-			    <select class="form-control" name="industry_param">
+			    <select class="form-control" name="ind">
 			    	{% include 'analysis/options/finance_industries.html' %}
 			    </select>
 		    </div>
 
 		   	<div class="form-group">
 				<label><h6 class="font-weight-light" ><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;&nbsp;Keyword</h6></label>
-				<input type="text" class="form-control" placeholder="None..." name="keywords_param" />
+				<input type="text" class="form-control" placeholder="None..." name="keyword" />
 			</div>
+			<div class="row justify-content-center">
+				<button type="submit" onclick="myFunction()" class="btn btn-outline-light" style="background-color: #139d50">Search</button>
+			</div>
+		</form>
 		</div>
+
+
+
+
+
+
+
+
 		<div id="congressional_activity_form" class="tabcontent" style="display:none;">
+			<form method="GET" action=".">
+			<div class="form-group">
+			    <label><h6 class="font-weight-light" ><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;&nbsp;Congress Person</h6></label>
+			    <select class="form-control" name="person">
+			    	{% include 'analysis/options/congresspeople.html' %}
+			    </select>
+	    	</div>
+
 			<div class="form-group">
 			    <label><h6 class="font-weight-light"><i class="fa fa-chevron-circle-right"  aria-hidden="true"></i>&nbsp;&nbsp;Category</h6></label>
-			    <select class="form-control">
+			    <select class="form-control" name="table">
 			    	<option>Cosponsored - Bills</option>
 			    	<option>Sponsored - Bills</option>
 			    	<option>Votes</option>
@@ -60,19 +78,28 @@
 
 		    <div class="form-group">
 		    	<label><h6 class="font-weight-light"><i class="fa fa-chevron-circle-right"  aria-hidden="true"></i>&nbsp;&nbsp;Industry</h6></label>
-			    <select class="form-control">
+			    <select class="form-control" name="industry">
 			    	{% include 'analysis/options/congress_industries.html' %}
 			    </select>
 		    </div>
 
 		    <div class="form-group">
 				<label><h6 class="font-weight-light" ><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;&nbsp;Keyword</h6></label>
-				<input type="text" class="form-control" placeholder="None..." name="keywords_param" />
+				<input type="text" class="form-control" placeholder="None..." name="keyword" />
 			</div>
+			<div class="row justify-content-center">
+				<button type="submit" class="btn btn-outline-light" style="background-color: #139d50">Search</button>
+			</div>
+			</form>
 		</div>
-		<div class="row justify-content-center">
-			<button type="submit" class="btn btn-outline-light" style="background-color: #139d50">Search</button>
-		</div>
-	</form>
 </div>
 
+<script>
+function myFunction() {
+  if(document.getElementById("table").value == "Honoraria - Personal Finance"){
+  	document.getElementById("search_form").action = "/search/honoraria/";
+  } else {
+  	document.getElementById("search_form").action = "/search/compensation/";
+  }
+}
+</script>
