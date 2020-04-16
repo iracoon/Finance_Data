@@ -12,9 +12,27 @@ from django.views.generic import (
 	UpdateView,
 	DeleteView
 )
-from .models import Compensation
-from .models import Honoraria
 from .models import Post
+
+from .models import Compensation ####
+from .models import Agreement
+from .models import Asset ####
+from .models import Gift
+from .models import Income
+from .models import Liability
+from .models import Position
+from .models import Transaction
+from .models import Travel
+from .models import Honoraria #####
+from .models import Indivs
+from .models import PACs
+
+from .models import Bills ####
+from .models import Votes ###
+from .models import Cosponsor ###
+
+from .models import MemberInfo
+
 from django.core.paginator import Paginator
 
 def home(request):
@@ -93,6 +111,14 @@ class ResearchUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class SearchCompensationDetailView(DetailView):
 	model = Compensation
+	template_name = 'analysis/search/search_compensation_detail.html'
+
+class SearchHonorariaDetailView(DetailView):
+	model = Honoraria
+	template_name = 'analysis/search/search_detail.html'
+
+class SearchAssetDetailView(DetailView):
+	model = Asset
 	template_name = 'analysis/search/search_detail.html'
 
 class SearchCompensationListView(ListView):
@@ -101,36 +127,35 @@ class SearchCompensationListView(ListView):
 	template_name = 'analysis/search/search-analysis-compensation.html'
 
 	def get_queryset(self):
-		industry_param_query = self.request.GET.get('industry_param')
-		nulls_param_query = self.request.GET.get('nulls_param')
-		keywords_param_query = self.request.GET.get('keywords_param')
-
+		ind = self.request.GET.get('ind')
+		person = self.request.GET.get('person')
+		keyword = self.request.GET.get('keyword')
 		qs = Compensation.objects.all()
 
 		# keywords search for all columns in table
-		if keywords_param_query != '' and keywords_param_query is not None:
-			qs = qs.filter(Q(ID__icontains = keywords_param_query)
-				| Q(Chamber__icontains = keywords_param_query)
-				| Q(CID__icontains = keywords_param_query)
-				| Q(CalendarYear__icontains = keywords_param_query)
-				| Q(ReportType__icontains = keywords_param_query)
-				| Q(CompSource__icontains = keywords_param_query)
-				| Q(Orgname__icontains = keywords_param_query)
-				| Q(Ultorg__icontains = keywords_param_query)
-				| Q(Realcode__icontains = keywords_param_query)
-				| Q(Source__icontains = keywords_param_query)
-				| Q(CompSourceLocation__icontains = keywords_param_query)
-				| Q(CompDuties__icontains = keywords_param_query)
-				| Q(dupe__icontains = keywords_param_query))
+		if keyword != '' and keyword is not None:
+			qs = qs.filter(Q(ID__icontains = keyword)
+				| Q(Chamber__icontains = keyword)
+				| Q(CID__icontains = keyword)
+				| Q(CalendarYear__icontains = keyword)
+				| Q(ReportType__icontains = keyword)
+				| Q(CompSource__icontains = keyword)
+				| Q(Orgname__icontains = keyword)
+				| Q(Ultorg__icontains = keyword)
+				| Q(Realcode__icontains = keyword)
+				| Q(Source__icontains = keyword)
+				| Q(CompSourceLocation__icontains = keyword)
+				| Q(CompDuties__icontains = keyword)
+				| Q(dupe__icontains = keyword))
 
 		# specify by industry, or select all industries
-		if industry_param_query != '' and industry_param_query is not None:
-			qs = qs.filter(Realcode=industry_param_query)
+		if ind != 'All...' and keyword is not None:
+			qs = qs.filter(Realcode=ind)
 
-		# include nulls in industry column
-		if nulls_param_query == 'on':
-			qs = qs.exclude(Realcode__isnull=True).exclude(Realcode__exact='')
-		
+		# specify by congress person, or select all congresspeople
+		if person != 'All...' and person is not None:
+			qs = qs.filter(CID=person.split("__",1)[1])
+
 		paginator = Paginator(qs, 10)
 
 		page = self.request.GET.get('page')
@@ -144,10 +169,221 @@ class SearchHonorariaListView(ListView):
 	template_name = 'analysis/search/search-analysis-honoraria.html'
 
 	def get_queryset(self):
-		industry_param_query = self.request.GET.get('industry_param')
-		nulls_param_query = self.request.GET.get('nulls_param')
-		keywords_param_query = self.request.GET.get('keywords_param')
-
+		ind = self.request.GET.get('ind')
+		person = self.request.GET.get('person')
+		keyword = self.request.GET.get('keyword')
 		qs = Honoraria.objects.all()
+
+		# keywords search for all columns in table
+		if keyword != '' and keyword is not None:
+			qs = qs.filter(Q(ID__icontains = keyword)
+				| Q(Chamber__icontains = keyword)
+				| Q(CID__icontains = keyword)
+				| Q(CalendarYear__icontains = keyword)
+				| Q(ReportType__icontains = keyword)
+				| Q(HonorariaSource__icontains = keyword)
+				| Q(Orgname__icontains = keyword)
+				| Q(Ultorg__icontains = keyword)
+				| Q(Realcode__icontains = keyword)
+				| Q(Source__icontains = keyword)
+				| Q(HonorariaSourceLoc__icontains = keyword)
+				| Q(HonorariaActivity__icontains = keyword)
+				| Q(HonorariaDate__icontains = keyword)
+				| Q(HonorariaDateText__icontains = keyword)
+				| Q(HonorariaAmt__icontains = keyword)
+				| Q(HonorariaAmtText__icontains = keyword)
+				| Q(Dupe__icontains = keyword))
+
+		# specify by industry, or select all industries
+		if ind != 'All...' and keyword is not None:
+			qs = qs.filter(Realcode=ind)
+
+		# specify by congress person, or select all congresspeople
+		if person != 'All...' and person is not None:
+			qs = qs.filter(CID=person.split("__",1)[1])
+
+		paginator = Paginator(qs, 10)
+
+		page = self.request.GET.get('page')
+		qs = paginator.get_page(page)
+
+		return qs;
+
+class SearchAssetListView(ListView):
+	model = Asset
+	context_object_name = 'assets'
+	template_name = 'analysis/search/search-analysis-asset.html'
+
+	def get_queryset(self):
+		ind = self.request.GET.get('ind')
+		person = self.request.GET.get('person')
+		keyword = self.request.GET.get('keyword')
+		qs = Asset.objects.all()
+
+		# keywords search for all columns in table
+		if keyword != '' and keyword is not None:
+			qs = qs.filter(Q(ID__icontains = keyword)
+				| Q(Chamber__icontains = keyword)
+				| Q(CID__icontains = keyword)
+				| Q(CalendarYear__icontains = keyword)
+				| Q(SenAB__icontains = keyword)
+				| Q(AssetSpouseJointDep__icontains = keyword)
+				| Q(AssetSource__icontains = keyword)
+				| Q(Orgname__icontains = keyword)
+				| Q(Realcode__icontains = keyword)
+				| Q(Source__icontains = keyword)
+				| Q(AssetDescrip__icontains = keyword)
+				| Q(Orgname2__icontains = keyword)
+				| Q(Ultorg2__icontains = keyword))
+
+		# specify by industry, or select all industries
+		if ind != 'All...' and keyword is not None:
+			qs = qs.filter(Realcode=ind)
+
+		# specify by congress person, or select all congresspeople
+		if person != 'All...' and person is not None:
+			qs = qs.filter(CID=person.split("__",1)[1])
+
+		paginator = Paginator(qs, 10)
+
+		page = self.request.GET.get('page')
+		qs = paginator.get_page(page)
+
+		return qs;
+
+class SearchBillsListView(ListView):
+	model = Bills
+	context_object_name = 'bills'
+	template_name = 'analysis/search/search-analysis-bills.html'
+
+	def get_queryset(self):
+		ind = self.request.GET.get('ind')
+		person = self.request.GET.get('person')
+		keyword = self.request.GET.get('keyword')
+		qs = Bills.objects.all()
+
+		# # keywords search for all columns in table
+		# if keyword != '' and keyword is not None:
+		# 	qs = qs.filter(Q(ID__icontains = keyword)
+		# 		| Q(Chamber__icontains = keyword)
+		# 		| Q(CID__icontains = keyword)
+		# 		| Q(CalendarYear__icontains = keyword)
+		# 		| Q(SenAB__icontains = keyword)
+		# 		| Q(AssetSpouseJointDep__icontains = keyword)
+		# 		| Q(AssetSource__icontains = keyword)
+		# 		| Q(Orgname__icontains = keyword)
+		# 		| Q(Realcode__icontains = keyword)
+		# 		| Q(Source__icontains = keyword)
+		# 		| Q(AssetDescrip__icontains = keyword)
+		# 		| Q(Orgname2__icontains = keyword)
+		# 		| Q(Ultorg2__icontains = keyword))
+
+		# # specify by industry, or select all industries
+		if ind != 'All...' and keyword is not None:
+			qs = qs.filter(policy_area=ind)
+
+		# specify by congress person, or select all congresspeople
+		if person != 'All...' and person is not None:
+			qs = qs.filter(sponsor_id=person.split('__')[0])
+
+		paginator = Paginator(qs, 10)
+
+		page = self.request.GET.get('page')
+		qs = paginator.get_page(page)
+
+		return qs;
+
+class SearchCosponsorListView(ListView):
+	model = Cosponsor
+	context_object_name = 'cosponsors'
+	template_name = 'analysis/search/search-analysis-cosponsor.html'
+
+	def get_queryset(self):
+		ind = self.request.GET.get('ind')
+		person = self.request.GET.get('person')
+		keyword = self.request.GET.get('keyword')
+		qs = Cosponsor.objects.all()
+
+		# specify by congress person, or select all congresspeople
+		if person != 'All...' and person is not None:
+			qs = qs.filter(Cosponsor=person.split('__')[0])
+
+		paginator = Paginator(qs, 10)
+
+		page = self.request.GET.get('page')
+		qs = paginator.get_page(page)
+
+		return qs;
+
+
+class SearchVotesListView(ListView):
+	model = Cosponsor
+	context_object_name = 'votes'
+	template_name = 'analysis/search/search-analysis-votes.html'
+
+	def get_queryset(self):
+		ind = self.request.GET.get('ind')
+		person = self.request.GET.get('person')
+		keyword = self.request.GET.get('keyword')
+		qs = Votes.objects.all()
+
+		paginator = Paginator(qs, 10)
+
+		page = self.request.GET.get('page')
+		qs = paginator.get_page(page)
+
+		return qs;
+
+class SearchIndivsListView(ListView):
+	model = Indivs
+	context_object_name = 'indivs'
+	template_name = 'analysis/search/search-analysis-indivs.html'
+
+	def get_queryset(self):
+		ind = self.request.GET.get('ind')
+		person = self.request.GET.get('person')
+		keyword = self.request.GET.get('keyword')
+		qs = Indivs.objects.all()
+
+
+		# specify by industry, or select all industries
+		if ind != 'All...' and keyword is not None:
+			qs = qs.filter(Realcode=ind)
+
+		# specify by congress person, or select all congresspeople
+		if person != 'All...' and person is not None:
+			qs = qs.filter(RecipID=person.split("__",1)[1])
+
+		# paginator = Paginator(qs, 10)
+
+		# page = self.request.GET.get('page')
+		# qs = paginator.get_page(page)
+
+		return qs;
+
+class SearchPACsListView(ListView):
+	model = PACs
+	context_object_name = 'pacs'
+	template_name = 'analysis/search/search-analysis-pacs.html'
+
+	def get_queryset(self):
+		ind = self.request.GET.get('ind')
+		person = self.request.GET.get('person')
+		keyword = self.request.GET.get('keyword')
+		qs = PACs.objects.all()
+
+
+		# specify by industry, or select all industries
+		if ind != 'All...' and keyword is not None:
+			qs = qs.filter(Realcode=ind)
+
+		# specify by congress person, or select all congresspeople
+		if person != 'All...' and person is not None:
+			qs = qs.filter(CID=person.split("__",1)[1])
+
+		# paginator = Paginator(qs, 10)
+
+		# page = self.request.GET.get('page')
+		# qs = paginator.get_page(page)
 
 		return qs;

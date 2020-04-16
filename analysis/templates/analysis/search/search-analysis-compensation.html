@@ -4,19 +4,23 @@
   <h1 class="display-4"><i class="fa fa-search" aria-hidden="true"></i> Search Tool</h1>
   <p class="lead">Use this tool to find insights into a congress person's financial data as well as their congressional activity. This data is sourced for the ProPulica API and the OpenSecrets API.</p>
   <hr>
-  <p>Want to learn more about this congress person? Visit their profile page!</p>
+  <p>Learn more about where our data is sourced from!</p>
   <p class="lead">
-    <a class="btn btn-dark btn-lg" href="#" role="button">Profile</a>
+    <a class="btn btn-dark btn-lg" href="https://www.opensecrets.org/" role="button">OpenSecrets</a>
+    <a class="btn btn-outline-dark btn-lg" href="https://www.propublica.org/datastore/" role="button">ProPublica</a>
   </p>
 </div>
 
 <div class="search">
 <div class="row justify-content-center">
+	<p><b>Results:&nbsp;&nbsp;</b>{{ compensations.paginator.count }}</p>
+</div>
+<div class="row justify-content-center">
 	{% if compensations.has_previous %}
 	<a href="?page=1">&nbsp;<i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;</a>
 	<a href="?page={{compensations.previous_page_number}}">&nbsp;<i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;</a>
 	{% endif %}
-
+	Pages: 
 	{% for num in compensations.paginator.page_range %}
 		{% if compensations.number == num %}
 			<strong>&nbsp;&nbsp;{{num}}&nbsp;&nbsp;</strong>
@@ -32,30 +36,42 @@
 </div>	
 <br />
 <div class="row">
-    {% for item in compensations %}
-    <div class="col-sm-12 col-md-6 col-1g-6">
-		<div class="card bg-light mb-3 border-light">
-			<div class="card-header" style="border:none">
-			    {{ item.CompSource }}
+	{% if not compensations %}
+		<div class="col-12">
+			<div class="card bg-light mb-3 border-light">
+				<div class="card-body">
+				    <h5 class="card-title">No Information Currently Available</h5>
+				    <p class="card-text">Try expanding your search parameters!</p>
+				</div>
 			</div>
-			<a href="{% url 'analysis-search-compensation-detail' item.ID %}">
-			<div class="card-body">
-			    <h5 class="card-title">{{ item.Orgname }}</h5>
-			    <p class="card-text">{{ item.CompSourceLocation }}</p>
-			    <p class="card-text">{{ item.Realcode }}</p>
+			<br />
+		</div>  
+	{% else %}
+	    {% for item in compensations %}
+	    <div class="col-sm-12 col-md-6 col-1g-6">
+			<div class="card bg-light mb-3 border-light">
+				<div class="card-header" style="border:none">
+				    {{ item.CompSource }}
+				</div>
+				<a href="{% url 'analysis-search-compensation-detail' item.ID %}">
+				<div class="card-body">
+				    <h5 class="card-title">{{ item.Orgname }}</h5>
+				    <p class="card-text">{{ item.CompSourceLocation }}</p>
+				    <p class="card-text">{{ item.Realcode }}</p>
+				</div>
+				</a>
 			</div>
-			</a>
-		</div>
-		<br />
-	</div>   	    
-	{% endfor %}
+			<br />
+		</div>   	    
+		{% endfor %}
+	{% endif %}
 </div>
 <div class="row justify-content-center">
 	{% if compensations.has_previous %}
 	<a href="?page=1">&nbsp;<i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;</a>
 	<a href="?page={{compensations.previous_page_number}}">&nbsp;<i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;</a>
 	{% endif %}
-
+	Pages: 
 	{% for num in compensations.paginator.page_range %}
 		{% if compensations.number == num %}
 			<strong>&nbsp;&nbsp;{{num}}&nbsp;&nbsp;</strong>
