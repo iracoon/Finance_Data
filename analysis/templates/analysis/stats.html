@@ -1,20 +1,12 @@
 {% extends "analysis/base.html" %}
 {% block content %}
-    <h1>Statistics Page</h1>
-     <p>Get general info about a congress person like their chamber, top sector donations, etc. sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    {% include 'analysis/stats_params.html' %}
-    <br />
+	<div class="Search">
     <div class="card bg-light mb-3 border-light">
     		<div class="card-header" style="border:none">
 			    <h1>Ted Cruz</h1>
-			    <p><b>114</b></p>
+			    <p><b>113</b></p>
 			</div>
 		<div class="card-body">
-		<div>
-			{% for person in persons %}
-               <p>{{ person.Orgname }}</p>
-			{% endfor %}
-		</div>
     	<div class="row">
     		<div class="col-sm-12 col-md-6 col-1g-6">
     			<h3 class="font-weight-light">Financial Data</h3>
@@ -40,5 +32,6 @@
     		</div>
     	</div>
     	</div>
+	</div>
 	</div>
 {% endblock content %}

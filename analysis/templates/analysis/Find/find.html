@@ -9,4 +9,37 @@
    <hr>
   <p>click on a card to visit a congressperson's profile</p>
 </div>
+<div class="search">
+<div class="row">
+	{% if not persons %}
+		<div class="col-12">
+			<div class="card bg-light mb-3 border-light">
+				<div class="card-body">
+				    <h5 class="card-title">No Information Currently Available</h5>
+				    <p class="card-text">Try expanding your search parameters!</p>
+				</div>
+			</div>
+			<br />
+		</div>  
+	{% else %}
+	    {% for item in persons %}
+	    <div class="col-sm-12 col-md-6 col-1g-6">
+			<div class="card bg-light mb-3 border-light">
+				<div class="card-header" style="border:none">
+				    <b>Congress Person: </b> {{ item.CID}}
+				</div>
+				<a href="{% url 'analysis-search-compensation-detail' item.ID %}">
+<!-- 				<div class="card-body">
+				    <h5 class="card-title">{{ item.first_name }}</h5>
+				    <p class="card-text">{{ item.last_name }}</p>
+				    <p class="card-text">{{ item.url }}</p>
+				</div> -->
+				</a>
+			</div>
+			<br />
+		</div>   	    
+		{% endfor %}
+	{% endif %}
+</div>
+</div>
 {% endblock content %}

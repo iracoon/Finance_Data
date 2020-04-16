@@ -1,6 +1,61 @@
 {% extends "analysis/base.html" %}
 {% block content %}
+{% load static %}
+
+<div class="jumbotron jumbotron-fluid" style="background: rgb(18,140,78);
+background: linear-gradient(90deg, rgba(18,140,78,1) 22%, rgba(17,163,48,1) 57%); color: white">
+  <div class="container">
+    <h1 class="font-weight-light"><b>TrackGov</b> <i class="fa fa-pagelines" aria-hidden="true"></i></h1>
+    <br />
+    <h5 class="font-weight-light"><b>What is TrackGov? </b><br /><br /><i class="fa fa-arrow-right" aria-hidden="true"></i>&nbsp;TrackGov began as an idea to track the relationship between powerful representatives in our republic and the money flowing into both their personal wealth and their campaign finances. With the increasingly polarized nature of American politics, such a tool is necessary to make more readily available and transparent the information people need to make an informed decision in 2020 and beyond. Anyone who wants to know about the finances and special interests at work in congress ought to be able to find this information as straightforwardly as possible. TrackGov encourages the democratization of information relevant to the personal finances, campaign funding, and voting record of elected officials. Through an easy-to-use tool, average citizens are empowered to make informed decisions equipped with all relevant knowledge about the most important information to know about their legislators. Voters can see plainly what interests may be influencing politicians, which industries are contributing to the campaign funding of different legislators, and look up how the votes of congress people line up with their own beliefs.</h5>
+      <hr style="display: block; height: 1px;
+    border: 0; border-top: 1px solid white;
+    margin: 1em 0; padding: 0;">
+  <p>Learn more about where our data is sourced from!</p>
+  <p class="lead">
+    <a class="btn btn-light btn-lg" href="https://www.opensecrets.org/" role="button">OpenSecrets</a>
+    <a class="btn btn-outline-light btn-lg" href="https://www.propublica.org/datastore/" role="button">ProPublica</a>
+  </p>
+  </div>
+</div>
+<div style="padding-left:100px; padding-right: 100px">
 <div class="row">
-	<h1>Home Page</h1>
+	<link rel="stylesheet" type="text/css" href="{% static 'analysis/css/main.css' %}">
+
+       <div class="col-sm-12 col-md-4 col-1g-4">
+            <div class="card bg-light mb-3 border-light">
+                <a href="">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>&nbsp;Search Tool</h5>
+                    <p class="card-text">Search through the entire OpenSecrets and ProPublica data archives. Filter by congressperson, industry, and data type.</p>
+                </div>
+                </a>
+            </div>
+            <br />
+        </div> 
+
+        <div class="col-sm-12 col-md-4 col-1g-4">
+            <div class="card bg-light mb-3 border-light">
+                <a href="">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>&nbsp;Find Tool</h5>
+                    <p class="card-text">Which congresspeople have the most individual donations? Which congresspeople are mostly financed by PACs?</p>
+                </div>
+                </a>
+            </div>
+            <br />
+        </div> 
+
+        <div class="col-sm-12 col-md-4 col-1g-4">
+            <div class="card bg-light mb-3 border-light">
+                <a href="">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>&nbsp;General Info</h5>
+                    <p class="card-text">Get general information like net worth, assets, taxes, seniority, party, etc. about a congressperson.</p>
+                </div>
+                </a>
+            </div>
+            <br />
+        </div> 
 </div>
 {% endblock content %}

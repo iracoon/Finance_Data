@@ -1,10 +1,26 @@
 {% extends "analysis/base.html" %}
 {% block content %}
+<div style="padding: 50px;">
+<br />
+
+<div class="row">
+	<div class="col">
+	<button value="back" onClick="javascript:history.go(-1);" class="btn btn-outline-light" style="background-color: #139d50">back</button>
+</div>
+</div>
+
 <div class="row">
   <div class="col">
+  	<br />
     <h1>{{ object.title}}</h1>
-    <p>@{{ object.author }}, {{ object.date_posted|date:"F d, Y" }}</p>
+    <hr />
+    <h6 class="font-weight-light"><b><i class="fa fa-link" aria-hidden="true"></i> </b>http://127.0.0.1:8000/search/compensation/A080045827/</h6>
+	<h6 class="font-weight-light"><b><i class="fa fa-link" aria-hidden="true"></i> </b>http://127.0.0.1:8000/search/compensation/A080045828/</h6>
+	<small>@{{ object.author }}, {{ object.date_posted|date:"F d, Y" }}</small>
+	<hr />
     <p>{{object.content}}</p>
   </div>
+</div>
+
 </div>
 {% endblock content %}

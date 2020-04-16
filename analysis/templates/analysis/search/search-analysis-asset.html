@@ -11,4 +11,77 @@
   </p>
 </div>
 
+<div class="search">
+<div class="row justify-content-center">
+	<p><b>Results:&nbsp;&nbsp;</b>{{ assets.paginator.count }}</p>
+</div>
+<div class="row justify-content-center">
+	{% if assets.has_previous %}
+	<a href="?page=1">&nbsp;<i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;</a>
+	<a href="?page={{assets.previous_page_number}}">&nbsp;<i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;</a>
+	{% endif %}
+	Pages: 
+	{% for num in assets.paginator.page_range %}
+		{% if assets.number == num %}
+			<strong>&nbsp;&nbsp;{{num}}&nbsp;&nbsp;</strong>
+		{% elif num > assets.number|add:'-3' and num < assets.number|add:'3' %}
+			&nbsp;{{num}}&nbsp;
+		{% endif %}
+	{% endfor %}
+
+	{% if assets.has_next %}
+		<a href="?page={{assets.next_page_number}}">&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;</a>
+		<a href="?page={{assets.paginator.num_pages}}">&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;</a>
+	{% endif %}
+</div>	
+<br />
+<div class="row">
+	{% if not assets %}
+		<div class="col-12">
+			<div class="card bg-light mb-3 border-light">
+				<div class="card-body">
+				    <h5 class="card-title">No Information Currently Available</h5>
+				    <p class="card-text">Try expanding your search parameters!</p>
+				</div>
+			</div>
+			<br />
+		</div>  
+	{% else %}
+	    {% for item in assets %}
+	    <div class="col-sm-12 col-md-6 col-1g-6">
+			<div class="card bg-light mb-3 border-light">
+				<div class="card-header" style="border:none">
+				    {{ item.AssetSource }}
+				</div>
+				<div class="card-body">
+				    <h5 class="card-title">{{ item.Orgname }}</h5>
+				    <p class="card-text">{{ item.CID }}</p>
+				    <p class="card-text">{{ item.Realcode }}</p>
+				</div>
+			</div>
+			<br />
+		</div>   	    
+		{% endfor %}
+	{% endif %}
+</div>
+<div class="row justify-content-center">
+	{% if assets.has_previous %}
+	<a href="?page=1">&nbsp;<i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;</a>
+	<a href="?page={{assets.previous_page_number}}">&nbsp;<i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;</a>
+	{% endif %}
+	Pages: 
+	{% for num in assets.paginator.page_range %}
+		{% if assets.number == num %}
+			<strong>&nbsp;&nbsp;{{num}}&nbsp;&nbsp;</strong>
+		{% elif num > assets.number|add:'-3' and num < assets.number|add:'3' %}
+			&nbsp;{{num}}&nbsp;
+		{% endif %}
+	{% endfor %}
+
+	{% if assets.has_next %}
+		<a href="?page={{assets.next_page_number}}">&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;</a>
+		<a href="?page={{assets.paginator.num_pages}}">&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;</a>
+	{% endif %}
+</div>
+</div>
 {% endblock content %}

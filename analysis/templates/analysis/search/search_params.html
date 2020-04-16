@@ -69,7 +69,7 @@
 
 			<div class="form-group">
 			    <label><h6 class="font-weight-light"><i class="fa fa-chevron-circle-right"  aria-hidden="true"></i>&nbsp;&nbsp;Category</h6></label>
-			    <select class="form-control" name="table">
+			    <select class="form-control" name="table2" id="table2">
 			    	<option>Cosponsored - Bills</option>
 			    	<option>Sponsored - Bills</option>
 			    	<option>Votes</option>
@@ -113,10 +113,10 @@ function myFunction() {
 
 <script>
 function myFunction2() {
-  if(document.getElementById("table").value == "Sponsored - Bills"){
-  	document.getElementById("search_form2").action = "/search/Sponsored/";
-  } else if(document.getElementById("table").value == "Cosponsored - Bills") {
-  	document.getElementById("search_form2").action = "/search/cosponsored/";
+  if(document.getElementById("table2").value == "Sponsored - Bills"){
+  	document.getElementById("search_form2").action = "/search/sponsors/";
+  } else if(document.getElementById("table2").value == "Cosponsored - Bills") {
+  	document.getElementById("search_form2").action = "/search/cosponsors/";
   } else {
 	document.getElementById("search_form2").action = "/search/votes/";
   }

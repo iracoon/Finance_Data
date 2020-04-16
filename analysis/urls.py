@@ -21,9 +21,9 @@ from .views import (
 	SearchPACsListView,
 	SearchBillsListView,
 	SearchCosponsorListView,
-	SearchVotesListView,
+	SearchVotesListView)
 	##########
-	FindListView)
+	#FindListView)
 from . import views
 
 urlpatterns = [
@@ -52,7 +52,7 @@ urlpatterns = [
 	path('search/votes/',  SearchVotesListView.as_view(), name='analysis-search-votes'),
 	#########
 	path('search/compensation/<pk>/', SearchCompensationDetailView.as_view(), name='analysis-search-compensation-detail'),
-	path('find/', FindListView.as_view(), name='analysis-find'),
+	path('find/', views.find, name='analysis-find'),
 	path('stats/', views.stats, name='analysis-stats'),
 	path('graphs/', views.graphs, name='analysis-graphs'),
 ]

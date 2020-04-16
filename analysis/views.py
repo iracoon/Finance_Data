@@ -34,23 +34,32 @@ from .models import Cosponsor ###
 from .models import MemberInfo
 
 from django.core.paginator import Paginator
+import csv
 
 def home(request):
 	return render(request, 'analysis/home.html')
 
 def about(request):
-	return render(request, 'analysis/about.html')
+	with open('PolicyArea_Sector.csv') as csvfile:
+		next(csvfile)
+		file = csv.reader(csvfile)		
+		args = {}
+		args['list'] = file
+		return render(request, 'analysis/about.html', args)
 
-class FindListView(ListView):
-	model = Compensation
-	context_object_name = 'compensations'
-	template_name = 'analysis/find/find.html'
+
+def find(request):
+	# cursor = connection.cursor()
+	# cursor.execute('SELECT * FROM analysis_honoraria')
+	persons = Honoraria.objects.raw('SELECT * FROM analysis_honoraria;') # fetchall() may not be the right call here?
+	return render(request, 'analysis/Find/find.html', {'persons':persons})
+
 
 #general info page
 def stats(request):
 	# cursor = connection.cursor()
 	# cursor.execute('SELECT * FROM analysis_honoraria')
-	persons = Honoraria.objects.raw('SELECT * FROM analysis_honoraria') # fetchall() may not be the right call here?
+	persons = Honoraria.objects.raw('SELECT * FROM analysis_honoraria;') # fetchall() may not be the right call here?
 	return render(request, 'analysis/stats.html', {'persons':persons})
 
 
@@ -111,7 +120,7 @@ class ResearchUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class SearchCompensationDetailView(DetailView):
 	model = Compensation
-	template_name = 'analysis/search/search_compensation_detail.html'
+	template_name = 'analysis/search/search-analysis-compensation-detail.html'
 
 class SearchHonorariaDetailView(DetailView):
 	model = Honoraria
@@ -254,14 +263,14 @@ class SearchAssetListView(ListView):
 class SearchBillsListView(ListView):
 	model = Bills
 	context_object_name = 'bills'
-	template_name = 'analysis/search/search-analysis-bills.html'
+	template_name = 'analysis/search/search-analysis-sponsors.html'
 
 	def get_queryset(self):
 		ind = self.request.GET.get('ind')
 		person = self.request.GET.get('person')
 		keyword = self.request.GET.get('keyword')
 		qs = Bills.objects.all()
-
+		print(qs)
 		# # keywords search for all columns in table
 		# if keyword != '' and keyword is not None:
 		# 	qs = qs.filter(Q(ID__icontains = keyword)
@@ -353,11 +362,6 @@ class SearchIndivsListView(ListView):
 		# specify by congress person, or select all congresspeople
 		if person != 'All...' and person is not None:
 			qs = qs.filter(RecipID=person.split("__",1)[1])
-
-		# paginator = Paginator(qs, 10)
-
-		# page = self.request.GET.get('page')
-		# qs = paginator.get_page(page)
 
 		return qs;
 

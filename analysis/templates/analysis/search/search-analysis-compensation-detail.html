@@ -1,0 +1,31 @@
+{% extends "analysis/base.html" %}
+{% block content %}
+<div class="detail">
+<div class="row">
+	<div class="col">
+	<button value="back" onClick="javascript:history.go(-1);" class="btn btn-outline-light" style="background-color: #139d50">back</button>
+</div>
+<br />
+<br />
+<br />
+</div>
+<div class="row">
+  <div class="col">
+    <h1>{{ object.ID }}</h1>
+    <hr />
+    <p><b>Chamber: </b>{{object.Chamber}}</p>
+    <p><b>CID: </b>{{ object.CID }}</p>
+    <p><b>Calendar Year: </b>{{ object.CalendarYear }}</p>
+    <p><b>Report Type: </b>{{object.ReportType}}</p>
+    <p><b>Comp Source: </b>{{ object.CompSource }}</p>
+    <p><b>Org Name: </b>{{ object.Orgname }}</p>
+    <p><b>Ult Org: </b>{{object.Ultorg}}</p>
+    <p><b>Industry: </b>{{ object.Realcode }}</p>
+    <p><b>Source: </b>{{ object.Source }}</p>
+    <p><b>Comp Source Location: </b>{{object.compDuties}}</p>
+    <p><b>Comp Duties: </b>{{object.CompSourceLocation}}</p>
+    <p><b>Dupe: </b>{{ object.dupe }}</p>
+  </div>
+</div>
+</div>
+{% endblock content %}

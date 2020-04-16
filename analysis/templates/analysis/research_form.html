@@ -1,11 +1,25 @@
 {% extends "analysis/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="content-section">
+
+    <div style="padding: 50px">
+        <div class="row">
+    <div class="col">
+    <button value="back" onClick="javascript:history.go(-1);" class="btn btn-outline-light" style="background-color: #139d50">back</button>
+</div>
+</div>
+<br />
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Research Article</legend>
+                <h1 class="font-weight-light">Research Article</h1>
+                <div class="form-group">
+                <label>Link 1</label>
+                <input type="text" class="form-control" placeholder="None..." name="keyword" />
+                <br />
+                <label>Link 2</label>
+                <input type="text" class="form-control" placeholder="None..." name="keyword" />
+            </div>
                 {{ form|crispy }}
             </fieldset>
             <div class="form-group">

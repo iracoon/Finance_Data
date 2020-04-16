@@ -1,4 +1,39 @@
 {% extends "analysis/base.html" %}
 {% block content %}
+<div style="padding: 50px">
     <h1>About Page</h1>
+    <hr />
+    <div>
+    </br>
+    	<p>
+    	 The Congressional Finance Database would like to acknowledge and thank   <a href="https://www.opensecrets.org" style="font-weight: bold; color: black"> The Center for Responsive Politics (also known by their URL, OpenSecrets.org)</a>, <a href="https://www.propublica.org" style="font-weight: bold; color: black">ProPublica.org</a>, and <a href="https://www.congress.gov" style="font-weight: bold; color: black"> Congress.gov </a> for providing their data, and thus making it possible for us to build this project.  
+		</p>
+		<p>	
+    	The Congressional Finance Database began as an idea to track the relationship between powerful representatives in our republic and the money flowing into both their personal wealth and their campaign finances. With the increasingly polarized nature of American politics, such a tool is necessary to make more readily available and transparent the information people need to make an informed decision in 2020 and beyond. Anyone who wants to know about the finances and special interests at work in congress ought to be able to find this information as straightforwardly as possible.
+		</p>
+		<P>
+			The Congressional Finance Database encourages the democratization of information relevant to the personal finances, campaign funding, and voting record of elected officials. Through an easy-to-use tool, average citizens are empowered to make informed decisions equipped with all relevant knowledge about the most important information to know about their legislators. Voters can see plainly what interests may be influencing politicians, which industries are contributing to the campaign funding of different legislators, and look up how the votes of congress people line up with their own beliefs.
+		</P>
+		<p>
+			Contributions are sourced back to the <a href="https://www.opensecrets.org/industries/slist.php" style="font-weight: bold; color: black"> sector </a>from which they came. We use information about the amount of money coming from people employed in different industries (e.g. agribusiness, defense, labor) as a shorthand way to compile and make correlative assertions about contributions made from within each industry (e.g. for-profit prisons, steel production, textiles). The aims of each potential law, “<a href="https://www.congress.gov/help/field-values/policy-area" style="font-weight: bold; color: black">policy areas</a>” in their political nomenclature, include such things as health, social welfare, and taxation. We use the sector categorization to derive data that is collected and stood side-by-side against the broad legislative goals sought by each piece of legislation or would-be legislation. Alignment of the policy area and sector categorization are as follows:
+		</p>
+		
+		</br>
+		
+		<table class = "table">
+		<tr>
+			<th scope="col">Policy Area</th>
+			<th scope="col">Sector</th>
+		</tr>
+		<tbody>
+		<tr>
+		{% for row in list%}
+			<td>{{row.0}}</td>
+			<td>{{row.1}}</td>
+		</tr>
+		</tbody>
+		{% endfor %}
+		</table>
+    </div>
+   </div>
 {% endblock content %}

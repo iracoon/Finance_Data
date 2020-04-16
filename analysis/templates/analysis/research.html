@@ -1,6 +1,11 @@
 {% extends "analysis/base.html" %}
 {% block content %}
-<h1>Research Posts</h1>
+<div style="padding: 50px;">
+	<h1>Research Posts</h1>
+	{% if user.is_authenticated %}
+			<a href="{% url 'research-create' %}" class="btn btn-outline-light" style="background-color: #139d50" role="button">Add Post</a>
+	{% endif %}
+<br />
 <br />
 <div class="row">
     {% for item in posts %}
@@ -20,4 +25,5 @@
 	</div>   	    
 	{% endfor %}
 </div>
+<div class="search">
 {% endblock content %}
